@@ -1,0 +1,27 @@
+{
+  "name": "webpack-template",
+  "version": "0.1.0",
+  "description": "webpack template for vanilla JS + scss",
+  "main": "index.js",
+  "repository": "https://github.com/fatush55/webpack-template",
+  "author": "fatush55",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack serve --config ./webpack/dev.config.js",
+    "build": "webpack --config ./webpack/prod.config.js"
+  },
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "file-loader": "^6.2.0",
+    "fs": "^0.0.1-security",
+    "html-webpack-plugin": "^5.5.3",
+    "mini-css-extract-plugin": "^2.7.6",
+    "path": "^0.12.7",
+    "postcss-loader": "^7.3.3",
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}

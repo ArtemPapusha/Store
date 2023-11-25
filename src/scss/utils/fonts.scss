@@ -1,0 +1,20 @@
+$roboto-font-path: "../fonts";
+
+@font-face {
+  font-family: 'IcoMoon-Free';
+  src: url("#{$roboto-font-path}/IcoMoon-Free.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  src: url("#{$roboto-font-path}/Roboto-Black.ttf") format("ttf");
+  font-family: "Roboto";
+  font-weight: 900;
+}
+
+@font-face {
+  src: url("#{$roboto-font-path}/Roboto-Bold.ttf") format("ttf");
+  font-family: "Roboto";
+  font-weight: 300;
+}
