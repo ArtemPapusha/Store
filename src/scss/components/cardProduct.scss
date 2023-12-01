@@ -1,0 +1,76 @@
+@mixin forPrice() {
+  border-radius: 5px;
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 100;
+}
+
+@mixin fs-roboto($weight) {
+  font-family: "Roboto";
+  font-weight: $weight;
+}
+.card-wrapper {
+  @include flexContainer(column, space-between, center);
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.title-laptop {
+  @include textStyle(center, none, rgb(189, 134, 241) 1px 0 10px);
+  @include fs-roboto(900);
+}
+
+.title-console {
+  @include textStyle(center, none, rgb(213, 214, 221) 1px 0 10px);
+  @include fs-roboto(900);
+}
+
+.title-PC {
+  @include textStyle(center, none, rgb(82, 100, 238) 1px 0 10px);
+  @include fs-roboto(900);
+}
+
+.description{
+  @include textStyle(center, none, none);
+  @include fs-roboto(400);
+}
+
+.footer-card-product {
+  @include flexContainer(row, space-between, center);
+}
+
+.price-laptop {
+  @include textStyle(center, none, none);
+  @include forPrice();
+  background-color: rgb(189, 134, 241);
+ 
+}
+
+.price-console {
+  @include textStyle(center, none, none);
+  @include forPrice();
+  background-color: rgb(240, 235, 244);
+  border: 1px solid grey;
+  
+}
+
+.price-PC {
+  @include textStyle(center, none, none);
+  @include forPrice();
+  background-color: rgb(106, 95, 224);
+  border: 1px solid rgb(8, 0, 240);
+  
+}
+
+.img-laptop:hover {
+  content: url('../images/laptopsmall2.jpg');
+}
+
+.img-console:hover {
+  content: url('../images/consolesmall2.jpg');
+}
+
+.img-PC:hover {
+  content: url('../images/pcsmall2.jpg');
+}
+

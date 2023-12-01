@@ -1,0 +1,13 @@
+$step: 10px;
+
+$widths: 2, 5, 10, 15, 20, 30, 50;
+
+@each $width in $widths {
+  .wd-#{10 * $width} {
+    width: $step * $width;
+  }
+}
+
+.wd-100percent {
+  width: 100%;
+}

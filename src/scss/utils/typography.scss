@@ -1,0 +1,16 @@
+$step: 2px;
+
+$sizes: 8, 9, 10, 11, 12, 13, 14;
+
+@each $size in $sizes {
+  .fs-#{2 * $size} {
+    font-size: $step * $size;
+  }
+}
+
+@mixin textStyle($align, $decoration, $shadow) {
+  text-align: $align;
+  text-decoration: $decoration;
+  text-shadow: $shadow;
+}
+

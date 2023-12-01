@@ -10,27 +10,20 @@ const getImageRule = require('./utils/getImageRule');
 const getOutput = require('./utils/getOutput');
 
 const config = {
-	mode: 'production',
-	output: getOutput(),
-	entry: {
-		...addModuleScriptInOutput(),
-		...addModuleFontsInOutput(),
-		...addModuleImagesInOutput(),
-	},
-	plugins: [
-		...generateHtmlPlugins(),
-		...getCssPlugins(),
-	],
-	module: {
-		rules: [
-			getStyleRule(),
-			getFontsRule(),
-			getImageRule(),
-		],
-	},
-	resolve: {
-		alias: getAlias(),
-	},
+  mode: 'development',
+  output: getOutput(),
+  entry: {
+    ...addModuleScriptInOutput(),
+    ...addModuleFontsInOutput(),
+    ...addModuleImagesInOutput(),
+  },
+  plugins: [...generateHtmlPlugins(), ...getCssPlugins()],
+  module: {
+    rules: [getStyleRule(), getFontsRule(), getImageRule()],
+  },
+  resolve: {
+    alias: getAlias(),
+  },
 };
 
 module.exports = config;
