@@ -30,17 +30,7 @@
   transform: translateY(-1px);
 }
 
-.button-laptop:active {
-@include buttonActive();
-  box-shadow: rgb(189, 134, 241) 1px 0 10px;
-}
-
-.button-console:active {
+.button:active {
   @include buttonActive();
   box-shadow: rgb(142, 137, 146) 1px 0 10px;
-}
-
-.button-PC:active {
-  @include buttonActive();
-  box-shadow: rgb(56, 68, 232) 1px 0 10px;
 }

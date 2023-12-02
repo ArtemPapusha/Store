@@ -22,7 +22,7 @@ class CardProduct {
     this.buildImage();
     this.buildDescription();
     this.buildPrice();
-    this.cartButton = new Button(`${this.name}`, 'Add to Cart');
+    this.cartButton = new Button(`${this.name}`, '');
     this.buildCardWrapper();
 
     return this;
@@ -72,15 +72,18 @@ class CardProduct {
     const $cardWrapper = document.createElement('div');
     $cardWrapper.classList.add('card-wrapper', `card-wrapper-${this.name}`, 'wd-200', 'py-6', 'px-6','gap-20', 'my-6', 'mx-6');
 
+    $cardWrapper.addEventListener('mouseover', this.handleMouseOver);
+    $cardWrapper.addEventListener('mouseleave', this.handleMouseLeave);
+
     $cardWrapper.appendChild(this._title);
     $cardWrapper.appendChild(this._image);
-    $cardWrapper.appendChild(this._description);
 
     const $footerCardProduct = document.createElement('div');
-    $footerCardProduct.classList.add('footer-card-product', 'gap-30');
+    $footerCardProduct.classList.add('footer-card-product', 'gap-40');
     $footerCardProduct.appendChild(this._price);
     $footerCardProduct.appendChild(this.cartButton.render());
     $cardWrapper.appendChild($footerCardProduct);
+    $cardWrapper.appendChild(this._description);
     this.setcardWrapper = $cardWrapper;
   }
 
@@ -93,7 +96,7 @@ class CardProduct {
 
   buildImage = () => {
     const $image = document.createElement('img')
-    $image.classList.add('img', `img-${this.name}`);
+    $image.classList.add('img-cards', `img-${this.name}`);
     $image.setAttribute('src', `./images/${this.image}`)
     $image.setAttribute('alt', `${this.image}`)
     this.setImage = $image;
@@ -112,6 +115,20 @@ class CardProduct {
     $price.innerText = this.price;
     this.setPrice = $price;
   }
+
+  /**
+   * @param { Mouse Event } event
+   */
+  handleMouseOver = (event) => {
+    this._description.style.display = 'block';
+  };
+
+    /**
+   * @param { Mouse Event } event
+   */
+    handleMouseLeave = (event) => {
+      this._description.style.display = 'none';
+    };
 }
 
 export default CardProduct;

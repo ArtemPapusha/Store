@@ -21,7 +21,7 @@ class Button {
     $text.innerText = `${this.value}`;
     $button.classList.add('button', `button-${this.name}`, 'py-4');
     const $icon = document.createElement('i');
-    $icon.classList.add('icon', 'icon-cart', 'mr-6', 'fs-18');
+    $icon.classList.add('icon', 'icon-cart', 'fs-18');
     $button.insertBefore($icon, $text);
     this._button = $button;
   }
