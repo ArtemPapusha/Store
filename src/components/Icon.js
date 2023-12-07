@@ -27,7 +27,7 @@ class Icon {
   buildIcon = () => {
     const $icon = document.createElement('i');
  
-    $icon.classList.add('icon', `icon-${this.iconName}`, `${this.color}`, `fs-${this.size}`);
+    $icon.classList.add('icon', `icon-${this.iconName}`, `text-${this.color}`, `fs-${this.size}`);
 
     if (this.className?.length) {
       $icon.classList.add(this.className);

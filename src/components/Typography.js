@@ -2,6 +2,7 @@ class Typography {
 
   #type;
   #text;
+  #color;
   #$element;
 
   // static titleElemnts = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
@@ -24,11 +25,13 @@ class Typography {
    * @param {{
    *   text: String ?,
    *   type: 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'button' | 'caption' | 'overline' ?,
+   *   color: 'primary' | 'primary-light' | 'primary-dark' | 'secondary' | 'secondary-light' | 'secondary-dark' | 'danger' | 'danger-light' | 'danger-dark' | 'warning' | 'warning-light' | 'warning-dark' | 'info' | 'info-light' | 'info-dark' ?,
    * }} args
   */
-  constructor({ text, type }) {
-    this.#type = type;
+  constructor({ text, type, textColor }) {
     this.#text = text;
+    this.#type = type;
+    this.#color = textColor;
 
     this.buildTypograpthyElement();
     return this;
@@ -36,7 +39,7 @@ class Typography {
 
   buildTypograpthyElement = () => {
     const $typography = document.createElement(this.getElement());
-    $typography.classList.add('typography', `typography-${this.#type}`);
+    $typography.classList.add('typography', `typography-${this.#type}`, `text-${this.#color}`);
     $typography.innerText = this.#text;
     this.#$element = $typography;
   }
