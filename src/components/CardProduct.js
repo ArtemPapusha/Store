@@ -94,7 +94,7 @@ class CardProduct {
   buildTitle = () => {
     const $title = document.createElement('div');
 
-    $title.classList.add('title', `title-${this.name}`, 'fs-20');
+    $title.classList.add('title', `title-${this.name}`);
 
     if (this.title) {
       $title.appendChild(this.title.textElement);
