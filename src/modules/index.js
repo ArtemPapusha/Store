@@ -27,18 +27,18 @@ const fieldCards = new FieldCards([
     button: {
       className: 'laptop',
       textContent: {
-        text: 'Cart',
+        text: '',
         type: 'button'
       },
-      variant: 'contained',
-      size: 'small',
+      variant: 'outlined',
+      size: 'medium',
       color: 'secondary-light',
       disabled: false,
       startIcon: {
         iconName: 'cart',
         size: '14',
-        color: 'primary-dark',
-        className: 'mr-6',
+        color: 'black',
+        className: '',
       }
     }
   }),
@@ -60,18 +60,18 @@ const fieldCards = new FieldCards([
     button: {
       className: 'console',
       textContent: {
-        text: 'Cart',
+        text: '',
         type: 'button'
       },
-      variant: 'contained',
+      variant: 'outlined',
       size: 'medium',
       color: 'secondary-light',
       disabled: false,
       startIcon: {
         iconName: 'cart',
         size: '14',
-        color: 'primary-dark',
-        className: 'mr-6',
+        color: 'black',
+        className: '',
       }
     }
   }),
@@ -93,18 +93,18 @@ const fieldCards = new FieldCards([
     button: {
       className: 'PC',
       textContent: {
-        text: 'Cart',
+        text: '',
         type: 'button'
       },
-      variant: 'contained',
+      variant: 'outlined',
       size: 'medium',
       color: 'secondary-light',
       disabled: false,
       startIcon: {
         iconName: 'cart',
         size: '14',
-        color: 'primary-dark',
-        className: 'mr-6',
+        color: 'black',
+        className: '',
       }
     }
   })

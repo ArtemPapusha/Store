@@ -6,6 +6,7 @@
   box-shadow: rgba(0, 0, 0, 0.02) 0 toRem(1) toRem(3) 0;
   box-sizing: border-box;
   color: $black;
+  border: toRem(1) solid $secondary-dark;
 }
 
 .button:hover {

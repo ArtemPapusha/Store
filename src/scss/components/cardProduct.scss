@@ -33,8 +33,8 @@
   @include textStyle(center, none, none);
   border-radius: toRem(5);
   font-style: italic;
-  border: toRem(1) solid $secondary;
-  color: $secondary;
+  border: toRem(1) solid $secondary-dark;
+  color: $secondary-dark;
 }
 
 .img-laptop:hover {
