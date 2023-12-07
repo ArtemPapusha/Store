@@ -6,28 +6,107 @@ import FieldInputCheckbox from '@/components/input/FieldInputCheckbox';
 import FieldInputRadio from '@/components/input/FieldInputRadio';
 import CardProdact from '@/components/CardProduct';
 import FieldCards from '@/components/FieldCards';
+import Typography from '@/components/Typography';
 
 const fieldCards = new FieldCards([
   new CardProdact({
     name: 'laptop',
-    title: 'Ноутбук ASUS ROG Strix G17 2023 G713PI-HX049',
+    title: {
+      text: 'Ноутбук ASUS ROG Strix G17 2023 G713PI-HX049',
+      type: 'h6'
+    },
     image: 'laptopsmall1.jpg',
-    description: 'Екран 17.3" IPS (1920x1080) Full HD 144 Гц, матовий / AMD Ryzen 9 7845HX (3.0 - 5.2 ГГц) / RAM 16 ГБ / SSD 1 ТБ / nVidia GeForce RTX 4070, 8 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС / 2.8 кг / сірий',
-    price: '2000 грн',
+    description: {
+      text: 'Екран 17.3" IPS (1920x1080) Full HD 144 Гц, матовий / AMD Ryzen 9 7845HX (3.0 - 5.2 ГГц) / RAM 16 ГБ / SSD 1 ТБ / nVidia GeForce RTX 4070, 8 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС / 2.8 кг / сірий',
+      type: 'body2'
+    },
+    price: {
+      text: '2000 грн',
+      type: 'caption'
+    },
+    button: {
+      className: 'laptop',
+      textContent: {
+        text: 'Cart',
+        type: 'button'
+      },
+      variant: 'contained',
+      size: 'small',
+      color: 'secondary-light',
+      disabled: false,
+      startIcon: {
+        iconName: 'cart',
+        size: '14',
+        color: 'primary-dark',
+        className: 'mr-6',
+      }
+    }
   }),
   new CardProdact({
     name: 'console',
-    title: 'Sony PlayStation 5 White 825Gb + DualSense (White) + Charging Station',
+    title: {
+      text: 'Sony PlayStation 5 White 825Gb + DualSense (White) + Charging Station',
+      type: 'h6'
+    },
     image: 'consolesmall1.jpg',
-    description: 'AMD Ryzen Zen 2 8х3.5 GHz, 16 ГБ GDDR5, AMD Radeon RDNA 2 2.23 GHz 10.3 TFLOPS, Підтримка технологій 8K та HDR, Прискорення трасування променів',
-    price: '1000 грн',
+    description: {
+      text: 'AMD Ryzen Zen 2 8х3.5 GHz, 16 ГБ GDDR5, AMD Radeon RDNA 2 2.23 GHz 10.3 TFLOPS, Підтримка технологій 8K та HDR, Прискорення трасування променів',
+      type: 'body2'
+    },
+    price: {
+      text: '1000 грн',
+      type: 'caption',
+    },
+    button: {
+      className: 'console',
+      textContent: {
+        text: 'Cart',
+        type: 'button'
+      },
+      variant: 'contained',
+      size: 'medium',
+      color: 'secondary-light',
+      disabled: false,
+      startIcon: {
+        iconName: 'cart',
+        size: '14',
+        color: 'primary-dark',
+        className: 'mr-6',
+      }
+    }
   }),
   new CardProdact({
     name: 'PC',
-    title: `Компю'тер Lenovo IdeaCentre G5 Gaming 14IOB6`,
+    title: {
+      text: `Компю'тер Lenovo IdeaCentre G5 Gaming 14IOB6`,
+      type: 'h6'
+    },
     image: 'pcsmall1.jpg',
-    description: 'Intel Core i5-10400F (2.9 — 4.3 ГГц) / RAM 16 ГБ / HDD 1 ТБ + SSD 256 ГБ / nVidia GeForce GTX 1650 Super, 4 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС',
-    price: '500 грн',
+    description: {
+      text: 'Intel Core i5-10400F (2.9 — 4.3 ГГц) / RAM 16 ГБ / HDD 1 ТБ + SSD 256 ГБ / nVidia GeForce GTX 1650 Super, 4 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС',
+      type: 'body2'
+    },
+    price: {
+      text: '500 грн',
+      type: 'caption'
+    },
+    button: {
+      className: 'PC',
+      textContent: {
+        text: 'Cart',
+        type: 'button'
+      },
+      variant: 'contained',
+      size: 'medium',
+      color: 'secondary-light',
+      disabled: false,
+      startIcon: {
+        iconName: 'cart',
+        size: '14',
+        color: 'primary-dark',
+        className: 'mr-6',
+      }
+    }
   })
 ]);
 

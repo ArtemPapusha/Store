@@ -1,5 +1,8 @@
-class FieldCards {
+import CardProduct from "./CardProduct";
 
+class FieldCards {
+  #fieldCards;
+ 
 
    /**
    * @param {{
@@ -8,32 +11,28 @@ class FieldCards {
    */
   constructor( cards = [] ) {
     this.cards = cards;
-
+   
     this.buildFieldCards();
     return this;
   }
 
-  set setFielsCards(value) {
-    this._fieldCards = value;
-  }
-
   get fieldCards() {
-    return this._fieldCards;
+    return this.#fieldCards;
   }
 
   render = () => {
-    document.body.appendChild(this._fieldCards);
+    document.body.appendChild(this.#fieldCards);
   }
 
   buildFieldCards = () => {
     const $fieldCards = document.createElement('div');
     $fieldCards.classList.add('field-cards');
 
-   this.cards.forEach((card) => {
-    $fieldCards.appendChild(card._cardWrapper);
-   });
+    this.cards.forEach((card) => {
+      $fieldCards.appendChild(card.cardWrapper);
+     });
 
-    this.setFielsCards = $fieldCards;
+     this.#fieldCards = $fieldCards;
   }
 }
 

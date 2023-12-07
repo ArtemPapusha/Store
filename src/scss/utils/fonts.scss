@@ -9,30 +9,35 @@ $roboto-font-path: "../fonts";
 
 @font-face {
   src: url("#{$roboto-font-path}/Roboto-Black.ttf") format("ttf");
-  font-family: "Roboto";
+  font-family: 'Roboto', sans-serif;
   font-weight: 900;
 }
 
 @font-face {
   src: url("#{$roboto-font-path}/Roboto-Regular.ttf") format("ttf");
-  font-family: "Roboto";
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
 
 @font-face {
   src: url("#{$roboto-font-path}/Roboto-ThinItalic.ttf") format("ttf");
-  font-family: "Roboto";
+  font-family: 'Roboto', sans-serif;
   font-weight: 100;
 }
 
 @font-face {
   src: url("#{$roboto-font-path}/Roboto-Medium.ttf") format("ttf");
-  font-family: "Roboto";
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
 
 @font-face {
   src: url("#{$roboto-font-path}/Roboto-Light.ttf") format("ttf");
-  font-family: "Roboto";
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
+}
+
+@mixin fs-roboto($weight) {
+  font-family: 'Roboto', sans-serif;
+  font-weight: $weight;
 }

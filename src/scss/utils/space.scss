@@ -1,6 +1,6 @@
-$step: 2px;
+$step: 0.125rem;
 
-$spaces: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20;
+$spaces: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 30, 40;
 
 @each $space in $spaces {
   .mt-#{2 * $space} {

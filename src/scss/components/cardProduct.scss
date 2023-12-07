@@ -1,34 +1,28 @@
-@mixin forPrice() {
-  border-radius: 5px;
-  font-family: "Roboto";
-  font-style: italic;
-  font-weight: 100;
-  background-color: #fff;
-  border: 1px solid grey;
-  color: $secondary-color;
-}
 
-@mixin fs-roboto($weight) {
-  font-family: "Roboto";
-  font-weight: $weight;
-}
 .card-wrapper {
-  @include flexContainer(column, space-between, center);
-  border: 1px solid black;
-  border-radius: 5px;
+  @include flexContainer(column, flex-start, center);
+  border: toRem(1) solid $black;
+  border-radius: toRem(5);
   align-self: flex-start;
-  min-height: 320px;
+  min-height: toRem(380);
 }
 
 .title {
-  @include textStyle(center, none, rgb(115, 112, 117) 1px 0 10px);
-  @include fs-roboto(900);
+  @include textStyle(center, none, $secondary toRem(1) 0 toRem(10));
+  flex: 1 1 auto;
 }
 
 .description{
   @include textStyle(center, none, none);
   @include fs-roboto(400);
-  display: none;
+  max-height: 0;
+  transition: max-height 0.2s linear;
+  overflow: hidden;
+
+  .card-wrapper:hover & {
+    max-height: toRem(500);
+    transition: max-height 0.5s linear;
+  }
 }
 
 .footer-card-product {
@@ -37,7 +31,10 @@
 
 .price {
   @include textStyle(center, none, none);
-  @include forPrice();
+  border-radius: toRem(5);
+  font-style: italic;
+  border: toRem(1) solid $secondary;
+  color: $secondary;
 }
 
 .img-laptop:hover {

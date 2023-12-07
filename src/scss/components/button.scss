@@ -1,29 +1,15 @@
-@mixin buttonActive() {
-  background-color: #F0F0F1;
-  border-color: rgba(0, 0, 0, 0.15);
-  color: rgba(0, 0, 0, 0.65);
-  transform: translateY(0);
-}
 .button {
   @include flexContainer(row, center, center);
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  cursor: pointer;
+  min-width: toRem(35);
+  border-radius: toRem(5);
+  box-shadow: rgba(0, 0, 0, 0.02) 0 toRem(1) toRem(3) 0;
   box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.85);
-  font-family: 'Roboto';
-  font-weight: 900;
-  transition: all 250ms;
-  touch-action: manipulation;
-  vertical-align: baseline;
+  color: $black;
 }
 
-.button:hover,
-.button:focus {
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: rgba(45, 45, 45, 0.1) 0 4px 12px;
-  color: rgba(0, 0, 0, 0.65);
+.button:hover {
+  color: $secondary;
 }
 
 .button:hover {
@@ -31,6 +17,75 @@
 }
 
 .button:active {
-  @include buttonActive();
-  box-shadow: rgb(142, 137, 146) 1px 0 10px;
+  background-color: $secondary;
+  color: $black;
+  transform: translateY(0);
+  box-shadow: $secondary toRem(1) 0 toRem(10);
 }
+
+.text {
+  outline: 0;
+  border: 0;
+  background-color: $white;
+
+  &:hover {
+    background-color: $secondary-light;
+  }
+  &:focus {
+    border: 0;
+  }
+}
+
+.contained {
+  color: $black;
+  outline: 0;
+  border: 0;
+
+  &:focus {
+    border: 0;
+  }
+}
+
+.outlined {
+  outline: 0;
+  background-color: $white;
+}
+
+.disabled {
+  color: $secondary-light;
+  border: toRem(1) solid $secondary-light;
+  background-color: $white;
+  cursor: none;
+  box-shadow: none;
+
+  &:hover,
+  &:active,
+  &:focus{
+    color: $secondary-light;
+    border: toRem(1) solid $secondary-light;
+    background-color: $white;
+    cursor: not-allowed;;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .icon{
+    color: $secondary-light
+  }
+}
+
+.small {
+font-size: toRem(10);
+padding: toRem(5);
+}
+
+.medium {
+  font-size: toRem(16);
+  padding: toRem(8);
+}
+
+.large {
+  font-size: toRem(22);
+  padding: toRem(11);
+}
+

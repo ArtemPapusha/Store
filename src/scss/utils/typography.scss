@@ -1,4 +1,4 @@
-$step: 2px;
+$step: 0.125rem;
 
 $sizes: 6, 7, 8, 9, 10, 11, 12, 13, 14;
 
@@ -12,5 +12,101 @@ $sizes: 6, 7, 8, 9, 10, 11, 12, 13, 14;
   text-align: $align;
   text-decoration: $decoration;
   text-shadow: $shadow;
+}
+
+.typography {
+  margin: 0;
+}
+
+.typography-subtitle1 {
+  @include fs-roboto(400);
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0.00938em; 
+}
+
+.typography-subtitle2 {
+  @include fs-roboto(500);
+  font-size: 0.875rem;
+  line-height: 1.57;
+  letter-spacing: 0.00714em;
+}
+
+.typography-body1 {
+  @include fs-roboto(400);
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+}
+
+.typography-body2 {
+  @include fs-roboto(400);
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+}
+
+.typography-button {
+  @include fs-roboto(500);
+  line-height: 1.4;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+}
+
+.typography-caption {
+  @include fs-roboto(400);
+  font-size: 0.75rem;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+}
+
+.typography-overline {
+  @include fs-roboto(400);
+  font-size: 0.75rem;
+  line-height: 2.66;
+  letter-spacing: 0.08333em;
+  text-transform: uppercase;
+}
+
+.typography-h1 {
+  @include fs-roboto(300);
+  font-size: 6rem;
+  line-height: 1.167;
+  letter-spacing: -0.01562em;
+}
+
+.typography-h2 {
+  @include fs-roboto(300);
+  font-size: 3.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.00833em;
+}
+
+.typography-h3 {
+  @include fs-roboto(400);
+  font-size: 3rem;
+  line-height: 1.167;
+  letter-spacing: 0em;
+}
+
+.typography-h4 {
+  @include fs-roboto(400);
+  font-size: 2.125rem;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+}
+
+.typography-h5 {
+  @include fs-roboto(400);
+  font-size: 1.5rem;
+  line-height: 1.334;
+  letter-spacing: 0em;
+}
+
+.typography-h6 {
+  @include fs-roboto(500);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
 }
 
