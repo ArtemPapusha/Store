@@ -3,6 +3,7 @@ class Typography {
   #type;
   #text;
   #color;
+  #weight;
   #$element;
 
   // static titleElemnts = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
@@ -25,13 +26,15 @@ class Typography {
    * @param {{
    *   text: String ?,
    *   type: 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'button' | 'caption' | 'overline' ?,
-   *   color: 'primary' | 'primary-light' | 'primary-dark' | 'secondary' | 'secondary-light' | 'secondary-dark' | 'danger' | 'danger-light' | 'danger-dark' | 'warning' | 'warning-light' | 'warning-dark' | 'info' | 'info-light' | 'info-dark' ?,
+   *   textColor: 'primary' | 'primary-light' | 'primary-dark' | 'secondary' | 'secondary-light' | 'secondary-dark' | 'danger' | 'danger-light' | 'danger-dark' | 'warning' | 'warning-light' | 'warning-dark' | 'info' | 'info-light' | 'info-dark' | 'white' | 'black' ?,
+   *   textWeight: '100' | '300' | '400' | '500' | '700' | '900' ?,
    * }} args
   */
-  constructor({ text, type, textColor }) {
+  constructor({ text, type, textColor = 'black', textWeight }) {
     this.#text = text;
     this.#type = type;
     this.#color = textColor;
+    this.#weight = textWeight;
 
     this.buildTypograpthyElement();
     return this;
@@ -39,7 +42,7 @@ class Typography {
 
   buildTypograpthyElement = () => {
     const $typography = document.createElement(this.getElement());
-    $typography.classList.add('typography', `typography-${this.#type}`, `text-${this.#color}`);
+    $typography.classList.add(`typography-${this.#type}`, `text-${this.#color}`, `font-weight--${this.#weight}`, 'typography');
     $typography.innerText = this.#text;
     this.#$element = $typography;
   }

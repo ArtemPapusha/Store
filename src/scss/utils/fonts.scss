@@ -14,6 +14,12 @@ $roboto-font-path: "../fonts";
 }
 
 @font-face {
+  src: url("#{$roboto-font-path}/Roboto-Bold.ttf") format("ttf");
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}
+
+@font-face {
   src: url("#{$roboto-font-path}/Roboto-Regular.ttf") format("ttf");
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
@@ -21,6 +27,12 @@ $roboto-font-path: "../fonts";
 
 @font-face {
   src: url("#{$roboto-font-path}/Roboto-ThinItalic.ttf") format("ttf");
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+}
+
+@font-face {
+  src: url("#{$roboto-font-path}/Roboto-Thin.ttf") format("ttf");
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
 }
@@ -37,7 +49,10 @@ $roboto-font-path: "../fonts";
   font-weight: 300;
 }
 
-@mixin fs-roboto($weight) {
-  font-family: 'Roboto', sans-serif;
-  font-weight: $weight;
+$weights: 100, 300, 400, 500, 700, 900;
+
+@each $weight in $weights {
+  .font-weight--#{$weight} {
+    font-weight: $weight;
+  }
 }

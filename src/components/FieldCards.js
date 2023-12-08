@@ -2,16 +2,15 @@ import CardProduct from "./CardProduct";
 
 class FieldCards {
   #fieldCards;
- 
 
    /**
    * @param {{
    *   cards: Array,
    * }} args
    */
-  constructor( cards = [] ) {
+  constructor({ cards = [] }) {
     this.cards = cards;
-   
+
     this.buildFieldCards();
     return this;
   }

@@ -7,14 +7,13 @@
   min-height: toRem(380);
 }
 
-.title {
+.card-product__title {
   @include textStyle(center, none, $secondary toRem(1) 0 toRem(10));
   flex: 1 1 auto;
 }
 
-.description{
+.card-product__description{
   @include textStyle(center, none, none);
-  @include fs-roboto(400);
   max-height: 0;
   transition: max-height 0.2s linear;
   overflow: hidden;
@@ -25,11 +24,11 @@
   }
 }
 
-.footer-card-product {
+.card-product__footer {
   @include flexContainer(row, space-between, center);
 }
 
-.price {
+.card-product__price {
   @include textStyle(center, none, none);
   border-radius: toRem(5);
   font-style: italic;
@@ -37,15 +36,15 @@
   color: $secondary-dark;
 }
 
-.img-laptop:hover {
+.card-product__img--laptop:hover {
   content: url('../images/laptopsmall2.jpg');
 }
 
-.img-console:hover {
+.card-product__img--console:hover {
   content: url('../images/consolesmall2.jpg');
 }
 
-.img-PC:hover {
+.card-product__img--PC:hover {
   content: url('../images/pcsmall2.jpg');
 }
 
