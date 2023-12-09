@@ -7,13 +7,13 @@ class FieldInputCheckbox extends FieldBase {
   $input = null;
   $label = null;
   $field = null;
-  $fieldset = null;
 
   /**
    * @param {{
    *   name: String,
-   *   label: String,
+   *   label: String ?,
    *   checkboxes: Array,
+   *   checkedCheckbox: Array ?,
    * }} args
    */
   constructor({
@@ -30,17 +30,13 @@ class FieldInputCheckbox extends FieldBase {
 
     this.buildLabel();
     this.buildInputCheckbox();
-    this.buildField();
+    // this.buildField();
     this.buildFieldWrapper();
 
     return this;
   }
 
-  set setField(value) {
-    this.$field = value;
-  }
-
-  get $field() {
+  get fieldCheckbox() {
     return this.$field;
   }
 
@@ -69,15 +65,19 @@ class FieldInputCheckbox extends FieldBase {
       $checkboxWrapper.appendChild($inputCheckbox);
       $checkboxWrapper.appendChild($label);
     });
+  
+    // const $fragment = document.createDocumentFragment();
 
-    this.setField = $checkboxWrapper;
+    // $fragment.appendChild($checkboxWrapper);
+
+    this.$field = $checkboxWrapper;
   };
 
-  buildField = () => {
-    const $fragment = document.createDocumentFragment();
+  // buildField = () => {
+  //   const $fragment = document.createDocumentFragment();
 
-    $fragment.appendChild(this.$field);
-  };
+  //   $fragment.appendChild(this.$field);
+  // };
 
   /**
    * @param { Mouse Event } event

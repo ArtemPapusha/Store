@@ -19,6 +19,10 @@ const fieldCards = new FieldCards({
       textWeight: ''
     },
     image: 'laptopsmall1.jpg',
+    rating: {
+      name: 'laptop',
+      checkboxes: [1, 2, 3]
+    },
     description: {
       text: 'Екран 17.3" IPS (1920x1080) Full HD 144 Гц, матовий / AMD Ryzen 9 7845HX (3.0 - 5.2 ГГц) / RAM 16 ГБ / SSD 1 ТБ / nVidia GeForce RTX 4070, 8 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС / 2.8 кг / сірий',
       type: 'body2',

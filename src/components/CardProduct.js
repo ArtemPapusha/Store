@@ -1,9 +1,11 @@
 import Button from '@/components/Button';
+import FieldInputCheckbox from '@/components/input/FieldInputCheckbox';
 import Typography from '@/components/Typography';
 
 class CardProduct {
   #title = null;
   #image;
+  rating = null;
   #description = null;
   #price = null;
   button = null;
@@ -11,12 +13,13 @@ class CardProduct {
    * @param {{
    *   title: Typography ?,
    *   image: String ?,
+   *   rating: FieldInputCheckbox ?,
    *   description: Typography ?,
    *   price: Typography ?,
    *   button: Button ?,
    * }} args
   */
-  constructor({ name = '', title = null, image = '', description = null, price = null, button = null }) {
+  constructor({ name = '', title = null, image = '', rating = null, description = null, price = null, button = null }) {
     this.name = name;
 
     if(title) {
@@ -24,6 +27,10 @@ class CardProduct {
     };
 
     this.image = image;
+
+    if(rating) {
+      this.rating = new FieldInputCheckbox(rating);
+    }
  
     if(description) {
       this.description = new Typography(description);
@@ -76,13 +83,17 @@ class CardProduct {
     $cardWrapper.appendChild(this.#title);
     $cardWrapper.appendChild(this.#image);
 
+    if (this.rating) {
+      $cardWrapper.appendChild(this.rating.fieldCheckbox);
+    }
+
     const $footerCardProduct = document.createElement('div');
 
     $footerCardProduct.classList.add('card-product__footer', 'gap-30');
     $footerCardProduct.appendChild(this.#price);
   
     if (this.button) {
-      $footerCardProduct.appendChild(this.button.render());
+      $footerCardProduct.appendChild(this.button.buttonElement);
     }
 
     $cardWrapper.appendChild($footerCardProduct);

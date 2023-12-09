@@ -4,8 +4,8 @@ import FieldValidation from '@/components/input/FieldValidation';
  * @extends FieldValidation
  */
 class FieldBase extends FieldValidation {
-  $fieldWrapper = null;
-
+  #fieldWrapper = null;
+  #lable;
   /**
    * @param {{
    *   name: String,
@@ -15,22 +15,14 @@ class FieldBase extends FieldValidation {
   constructor({ name, label }) {
     super();
     this.name = name;
-    this.label = label;
+    this.$label = label;
   }
 
-  set fieldWrapper(value) {
-    this.$fieldWrapper = value;
+  get fieldWrapper() {
+    return this.#fieldWrapper;
   }
 
-  get $fieldWrapper() {
-    return this.$fieldWrapper;
-  }
-
-  set setLabel(value) {
-    this.$label = value;
-  }
-
-  get $label() {
+  get label() {
     return this.$label;
   }
 
@@ -42,7 +34,7 @@ class FieldBase extends FieldValidation {
 
     $label.innerText = this.label;
 
-    this.setLabel = $label;
+    this.$label = $label;
   };
 
   buildFieldWrapper = () => {
@@ -52,12 +44,12 @@ class FieldBase extends FieldValidation {
 
     $wrapper.appendChild(this.$field);
 
-    this.$fieldWrapper = $wrapper;
+    this.#fieldWrapper = $wrapper;
   };
 
-  render = () => {
-    document.body.appendChild(this.$fieldWrapper);
-  };
+  // render = () => {
+  //   document.body.appendChild(this.$fieldWrapper);
+  // };
 }
 
 export default FieldBase;

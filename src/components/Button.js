@@ -18,7 +18,7 @@ class Button {
    *   endIcon: Icon ?,
    * }} args
  */
-  constructor({ className = '', textContent = null, variant = 'contained', size = 'medium', color = 'warning', disabled = false, startIcon = null, endIcon = null }) {
+  constructor({ className = '', textContent = null, variant = 'contained', size = 'medium', color = 'danger', disabled = false, startIcon = null, endIcon = null }) {
     this.className = className;
     this.type = 'button';
     this.textContent = textContent;
@@ -102,9 +102,6 @@ class Button {
 
   // }
 
-  render = () => {
-    return this.buttonElement;
-  }
 }
 
 export default Button;
