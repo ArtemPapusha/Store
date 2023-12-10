@@ -1,12 +1,12 @@
 .button {
   @include flexContainer(row, center, center);
   cursor: pointer;
-  min-width: toRem(35);
-  border-radius: toRem(5);
-  box-shadow: rgba(0, 0, 0, 0.02) 0 toRem(1) toRem(3) 0;
+  min-width: 35px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
   color: $black;
-  border: toRem(1) solid $secondary-dark;
+  border: 1px solid $secondary-dark;
 }
 
 .button:hover {
@@ -21,7 +21,7 @@
   background-color: $secondary;
   color: $black;
   transform: translateY(0);
-  box-shadow: $secondary toRem(1) 0 toRem(10);
+  box-shadow: $secondary 1px 0 10px;
 }
 
 .text {
@@ -54,7 +54,7 @@
 
 .disabled {
   color: $secondary-light;
-  border: toRem(1) solid $secondary-light;
+  border: 1px solid $secondary-light;
   background-color: $white;
   cursor: none;
   box-shadow: none;
@@ -63,7 +63,7 @@
   &:active,
   &:focus{
     color: $secondary-light;
-    border: toRem(1) solid $secondary-light;
+    border: 1px solid $secondary-light;
     background-color: $white;
     cursor: not-allowed;;
     box-shadow: none;
@@ -76,17 +76,17 @@
 }
 
 .small {
-font-size: toRem(10);
-padding: toRem(5);
+font-size: 10px;
+padding: 5px;
 }
 
 .medium {
-  font-size: toRem(16);
-  padding: toRem(8);
+  font-size: 16px;
+  padding: 8px;
 }
 
 .large {
-  font-size: toRem(22);
-  padding: toRem(11);
+  font-size: 22px;
+  padding: 11px;
 }
 

@@ -50,9 +50,9 @@ $colors: (
 
 @each $color-name, $color-value in $colors {
   .br-#{$color-name} {
-    border: toRem(2) solid $color-value;
+    border: 2px solid $color-value;
     &:focus {
-      border: toRem(1) solid $secondary-light;
+      border: 1px solid $secondary-light;
     }
   }
 }

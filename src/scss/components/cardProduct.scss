@@ -1,14 +1,14 @@
 
 .card-wrapper {
   @include flexContainer(column, flex-start, center);
-  border: toRem(1) solid $black;
-  border-radius: toRem(5);
+  border: 1px solid $black;
+  border-radius: 5px;
   align-self: flex-start;
-  min-height: toRem(380);
+  min-height: 380px;
 }
 
 .card-product__title {
-  @include textStyle(center, none, $secondary toRem(1) 0 toRem(10));
+  @include textStyle(center, none, $secondary 1px 0 10px);
   flex: 1 1 auto;
 }
 
@@ -19,7 +19,7 @@
   overflow: hidden;
 
   .card-wrapper:hover & {
-    max-height: toRem(500);
+    max-height: 500px;
     transition: max-height 0.5s linear;
   }
 }
@@ -30,9 +30,9 @@
 
 .card-product__price {
   @include textStyle(center, none, none);
-  border-radius: toRem(5);
+  border-radius: 5px;
   font-style: italic;
-  border: toRem(1) solid $secondary-dark;
+  border: 1px solid $secondary-dark;
   color: $secondary-dark;
 }
 
