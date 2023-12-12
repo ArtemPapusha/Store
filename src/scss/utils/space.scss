@@ -1,0 +1,65 @@
+$step: 2px;
+
+$spaces: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 30, 40;
+
+@each $space in $spaces {
+  .mt-#{2 * $space} {
+    margin-top: $step * $space;
+  }
+
+  .mb-#{2 * $space} {
+    margin-bottom: $step * $space;
+  }
+
+  .ml-#{2 * $space} {
+    margin-left: $step * $space;
+  }
+
+  .mr-#{2 * $space} {
+    margin-right: $step * $space;
+  }
+
+  .my-#{2 * $space} {
+    margin-top: $step * $space;
+    margin-bottom: $step * $space;
+  }
+
+  .mx-#{2 * $space} {
+    margin-right: $step * $space;
+    margin-left: $step * $space;
+  }
+}
+
+@each $space in $spaces {
+  .pt-#{2 * $space} {
+    padding-top: $step * $space;
+  }
+
+  .pb-#{2 * $space} {
+    padding-bottom: $step * $space;
+  }
+
+  .pl-#{2 * $space} {
+    padding-left: $step * $space;
+  }
+
+  .pr-#{2 * $space} {
+    padding-right: $step * $space;
+  }
+
+  .py-#{2 * $space} {
+    padding-top: $step * $space;
+    padding-bottom: $step * $space;
+  }
+
+  .px-#{2 * $space} {
+    padding-right: $step * $space;
+    padding-left: $step * $space;
+  }
+}
+
+@each $space in $spaces {
+  .gap-#{2 * $space} {
+    gap: $step * $space;
+  }
+}

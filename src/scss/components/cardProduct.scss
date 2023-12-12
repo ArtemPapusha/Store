@@ -1,0 +1,50 @@
+
+.card-wrapper {
+  @include flexContainer(column, flex-start, center);
+  border: 1px solid $black;
+  border-radius: 5px;
+  align-self: flex-start;
+  min-height: 380px;
+}
+
+.card-product__title {
+  @include textStyle(center, none, $secondary 1px 0 10px);
+  flex: 1 1 auto;
+}
+
+.card-product__description{
+  @include textStyle(center, none, none);
+  max-height: 0;
+  transition: max-height 0.2s linear;
+  overflow: hidden;
+
+  .card-wrapper:hover & {
+    max-height: 500px;
+    transition: max-height 0.5s linear;
+  }
+}
+
+.card-product__footer {
+  @include flexContainer(row, space-between, center);
+}
+
+.card-product__price {
+  @include textStyle(center, none, none);
+  border-radius: 5px;
+  font-style: italic;
+  border: 1px solid $secondary-dark;
+  color: $secondary-dark;
+}
+
+.card-product__img--laptop:hover {
+  content: url('../images/laptopsmall2.jpg');
+}
+
+.card-product__img--console:hover {
+  content: url('../images/consolesmall2.jpg');
+}
+
+.card-product__img--PC:hover {
+  content: url('../images/pcsmall2.jpg');
+}
+
