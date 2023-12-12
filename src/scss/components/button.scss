@@ -7,21 +7,18 @@
   box-sizing: border-box;
   color: $black;
   border: 1px solid $secondary-dark;
-}
 
-.button:hover {
-  color: $secondary;
-}
+  &:hover {
+    color: $secondary;
+    transform: translateY(-1px);
+  }
 
-.button:hover {
-  transform: translateY(-1px);
-}
-
-.button:active {
-  background-color: $secondary;
-  color: $black;
-  transform: translateY(0);
-  box-shadow: $secondary 1px 0 10px;
+  &:active {
+    background-color: $secondary;
+    color: $black;
+    transform: translateY(0);
+    box-shadow: $secondary 1px 0 10px;
+  }
 }
 
 .text {

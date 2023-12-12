@@ -2,7 +2,7 @@ import '~/modules/index.scss';
 
 import ListCards from '@/components/ListCards';
 
-const fieldCards = new ListCards()
+const listCards = new ListCards()
 .addCard({
     name: 'laptop',
     title: {

@@ -5,7 +5,6 @@ class ListCards {
   #listCards;
 
   constructor() {
-
     this.buildListCards();
   }
 

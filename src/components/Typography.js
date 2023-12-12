@@ -41,16 +41,12 @@ class Typography {
 
   buildTypograpthyElement = () => {
     const $typography = document.createElement(this.getElement());
-    $typography.classList.add(`typography-${this.#type}`, `text-${this.#color}`, `font-weight--${this.#weight}`, 'typography');
+    $typography.className = `typography-${this.#type} text-${this.#color} font-weight--${this.#weight} typography`;
     $typography.innerText = this.#text;
     this.#$textCell = $typography;
   }
 
-  getElement = () => {
-
-    return Typography.types[this.#type] || 'span';
-    
-  };
+  getElement = () =>  Typography.types[this.#type] || 'span';
 
   get $textElement() {
     return this.#$textCell;
