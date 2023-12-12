@@ -8,7 +8,12 @@ class Icon {
  /**
     * @param { IconDef } args
   */
-  constructor({ iconName = 'heart', size = '16', color = 'primary', className = '' }) {
+  constructor({
+    iconName = 'heart',
+    size = '16',
+    color = 'primary',
+    className = ''
+  }) {
 
     this.#iconName = iconName;
     this.#size = size;

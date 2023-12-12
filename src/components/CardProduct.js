@@ -13,7 +13,14 @@ class CardProduct {
  /**
    * @param { CardDef } args
   */
-  constructor({ name = '', title = null, image = '', description = null, price = null, button = null }) {
+  constructor({
+    name = '',
+    title = null,
+    image = '',
+    description = null,
+    price = null,
+    button = null
+  }) {
     this.#name = name;
 
     if(title) {

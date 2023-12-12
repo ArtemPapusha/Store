@@ -24,7 +24,13 @@ class Typography {
  /**
    * @param { TypographyDef } args
   */
-  constructor({ text, type, textColor = 'black', textWeight }) {
+  constructor({
+    text,
+    type,
+    textColor = 'black',
+    textWeight
+  }) {
+
     this.#text = text;
     this.#type = type;
     this.#color = textColor;

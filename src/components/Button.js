@@ -15,7 +15,16 @@ class Button {
   /**
    * @param { ButtonDef } args
    */
-  constructor({ className = '', textContent = null, variant = 'contained', buttonSize = 'medium', color = 'danger', disabled = false, startIcon = null, endIcon = null }) {
+  constructor({
+    className = '',
+    textContent = null,
+    variant = 'contained',
+    buttonSize = 'medium',
+    color = 'danger',
+    disabled = false,
+    startIcon = null,
+    endIcon = null
+  }) {
     this.#className = className;
     this.type = 'button';
     this.#textContent = textContent;

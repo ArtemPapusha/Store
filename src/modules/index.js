@@ -1,7 +1,6 @@
 import '~/modules/index.scss';
 
 import ListCards from '@/components/ListCards';
-import CardProduct from '@/components/CardProduct';
 
 const fieldCards = new ListCards()
 .addCard({
