@@ -5,6 +5,10 @@ $overlay = null;
     this.buildLoadingPage();
   }
 
+  get loading () {
+    return this.$overlay;
+  }
+
   buildLoadingPage = () => {
     this.$overlay = document.createElement('div');
     this.$overlay.className = 'loading_overlay';
@@ -12,7 +16,6 @@ $overlay = null;
    const $loadingElement = document.createElement('div');
     $loadingElement.className = 'lds-dual-ring';
     this.$overlay.appendChild($loadingElement);
-    document.body.appendChild(this.$overlay);
   }
 }
 

@@ -1,12 +1,11 @@
 import '~/modules/index.scss';
 
-import ListCards from '@/components/ListCards';
 import Loading from '@/components/Loading';
+import ListCards from '@/components/ListCards';
 
-const loading = new Loading();
+const listCards = new ListCards();
 
 function addCards(data) {
-    const listCards = new ListCards();
     data.cards.forEach(card => {
       listCards.addCard(card);
     });
@@ -15,7 +14,7 @@ function addCards(data) {
 
 async function fetchCards() {
   try {
-    loading.$overlay.style.display = 'flex';
+    listCards.$listCards.firstChild.style.display = 'flex';
 
     const response = await fetch('https://my-json-server.typicode.com/ArtemPapusha/store-back/db');
  
@@ -28,7 +27,7 @@ async function fetchCards() {
     console.error('Fetch error ==> ', error);
 
   } finally {
-    loading.$overlay.style.display = 'none';
+    listCards.$listCards.firstChild.style.display = 'none';
   }
 }
 

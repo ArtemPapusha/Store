@@ -1,34 +1,40 @@
 import Button from '@/components/Button';
+import Loading from '@/components/Loading';
 import CardProduct from "@/components/CardProduct";
 
 class ListCards {
-  #listCards;
+  $listCards;
 
   constructor() {
     this.buildListCards();
   }
 
-  get fieldCards() {
-    return this.#listCards;
+  get listCards() {
+    return this.$listCards;
   }
 
   render = () => {
-    document.body.appendChild(this.#listCards);
+    document.body.appendChild(this.$listCards);
   }
  /**
    * @param { CardDef } card
   */
   addCard = (card) => {
     const $card = new CardProduct(card);
-    this.#listCards.appendChild($card.$cardWrapper);
+    this.$listCards.appendChild($card.$cardWrapper);
     return this;
   }
 
-  buildListCards = () => {
-    const $fieldCards = document.createElement('div');
-    $fieldCards.classList.add('field-cards');
+ 
 
-     this.#listCards = $fieldCards;
+  buildListCards = () => {
+    const $listCards = document.createElement('div');
+    $listCards.classList.add('field-cards');
+
+    const $loading = new Loading();
+    $listCards.appendChild($loading.loading);
+
+     this.$listCards = $listCards;
   }
 }
 
