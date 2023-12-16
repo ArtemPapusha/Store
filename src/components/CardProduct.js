@@ -14,13 +14,13 @@ class CardProduct {
    * @param { CardDef } args
   */
   constructor({
-    name = '',
-    title = null,
-    image = '',
-    description = null,
-    price = null,
-    button = null
-  }) {
+      name = '',
+      title = null,
+      image = '',
+      description = null,
+      price = null,
+      button = null
+    }) {
     this.#name = name;
 
     if(title) {
@@ -95,7 +95,7 @@ class CardProduct {
     const $image = document.createElement('img');
 
     $image.className = `card-product__img card-product__img--${this.#name}`;
-    $image.setAttribute('src', `./images/${this.#image}`);
+    $image.setAttribute('src', `${this.#image}`);
     $image.setAttribute('alt', `${this.#image}`);
 
     this.#image = $image;
