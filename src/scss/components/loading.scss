@@ -1,37 +1,59 @@
-.loading_overlay {
-  @include flexContainer(row, center, center);
-  background-color: rgba(255, 255, 255, 0.5);
-  z-index: 99;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
 }
 
-.lds-dual-ring {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-}
-
-@keyframes lds-dual-ring {
+@keyframes skeleton-loading {
   0% {
-    transform: rotate(0deg);
+    background-color: hsl(200, 20%, 80%);
   }
   100% {
-    transform: rotate(360deg);
+    background-color: hsl(200, 20%, 95%);
   }
 }
 
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid #030303;
-  border-color: #0f0e0e transparent #0b0b0b transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
+.cardWrapperSkeleton {
+  @include flexContainer(column, flex-start, center);
+  align-self: flex-start;
+  min-height: 380px;
+  border: 1px solid hsl(200, 20%, 80%);
+  border-radius: 5px;
 }
+
+.titleSkeleton{
+  width: 100%;
+  flex: 1 1 auto;
+}
+
+.titleSkeletonElement{
+  width: 100%;
+  height: 1.25rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+
+.imageSkeleton {
+  width: 200px;
+  height: 137px;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.footerCardProductSkeleton {
+  @include flexContainer(row, space-between, center);
+}
+
+.priceSkeleton {
+width: 58px;
+height: 28px;
+border-radius: 0.25rem;
+}
+
+.buttonSkeleton {
+height: 28px;
+width: 58px;
+border-radius: 0.25rem;
+}
+
+

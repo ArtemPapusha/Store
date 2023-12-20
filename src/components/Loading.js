@@ -1,21 +1,68 @@
+import ListCards from "./ListCards";
+
 class Loading {
-$overlay = null;
+$cardWrapperSkeleton = null;
+
   constructor() {
-    this.$overlay = null;
-    this.buildLoadingPage();
+
+    this.$cardWrapperSkeleton = null;
+
+    this.buildSkeletonProduct();
   }
 
-  get loading () {
-    return this.$overlay;
+  get loadingSkeleton () {
+    return this.$cardWrapperSkeleton;
   }
 
-  buildLoadingPage = () => {
-    this.$overlay = document.createElement('div');
-    this.$overlay.className = 'loading_overlay';
+  buildSkeletonProduct = () => {
+    
+    const $cardWrapperSkeleton = document.createElement('div');
 
-   const $loadingElement = document.createElement('div');
-    $loadingElement.className = 'lds-dual-ring';
-    this.$overlay.appendChild($loadingElement);
+    $cardWrapperSkeleton.className = `cardWrapperSkeleton wd-200 py-6 px-6 gap-20 my-6 mx-6`;
+
+    const $titleSkeleton = document.createElement('div');
+
+    $titleSkeleton.className = `titleSkeleton`;
+
+    for (let i = 0; i < 3; i++) {
+    const $titleSkeletonElement = document.createElement('div');
+
+    $titleSkeletonElement.className = `titleSkeletonElement skeleton`;
+
+    $titleSkeleton.appendChild($titleSkeletonElement);
+  }
+
+    $cardWrapperSkeleton.appendChild($titleSkeleton);
+
+    const $imageSkeleton = document.createElement('div');
+
+    $imageSkeleton.className = `imageSkeleton skeleton`;
+   
+    $cardWrapperSkeleton.appendChild($imageSkeleton);
+
+    const $footerCardProductSkeleton = document.createElement('div');
+
+    $footerCardProductSkeleton.classList.add('footerCardProductSkeleton', 'gap-30');
+
+    const $priceSkeleton = document.createElement('div');
+
+    $priceSkeleton.className = `priceSkeleton skeleton`;
+
+    const $buttonSkeleton = document.createElement('div');
+
+    $buttonSkeleton.className = `buttonSkeleton skeleton`;
+
+
+    $footerCardProductSkeleton.appendChild($priceSkeleton);
+
+  
+    $footerCardProductSkeleton.appendChild($buttonSkeleton);
+    
+
+    $cardWrapperSkeleton.appendChild($footerCardProductSkeleton);
+
+    this.$cardWrapperSkeleton = $cardWrapperSkeleton;
+
   }
 }
 

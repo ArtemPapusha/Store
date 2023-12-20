@@ -1,34 +1,36 @@
 import '~/modules/index.scss';
 
-import Loading from '@/components/Loading';
 import ListCards from '@/components/ListCards';
+import ProductAPI from '@/services/PoductAPI';
+import Loading from '@/components/Loading';
 
+
+const loading = new Loading()
 const listCards = new ListCards();
+const productAPI = new ProductAPI();
+
+
+function listProductsLoader(show) {
+
+  show ? listCards.addSkeletonCards(12) : listCards.removeSkeletonCards();
+  
+}
 
 function addCards(data) {
-    data.cards.forEach(card => {
+    data?.forEach(card => {
       listCards.addCard(card);
     });
-    listCards.render();
 }
+
+
 
 async function fetchCards() {
-  try {
-    listCards.$listCards.firstChild.style.display = 'flex';
 
-    const response = await fetch('https://my-json-server.typicode.com/ArtemPapusha/store-back/db');
- 
-    const data = await response.json();
+  await productAPI.getProducts(listProductsLoader, addCards);
 
-    addCards(data);
-
-  } catch (error) {
-
-    console.error('Fetch error ==> ', error);
-
-  } finally {
-    listCards.$listCards.firstChild.style.display = 'none';
-  }
 }
 
+listCards.render();
+
 fetchCards();
+
