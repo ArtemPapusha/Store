@@ -22,7 +22,27 @@
         "textColor": "",
         "textWeight": ""
       },
-      "button": {
+      "buttonFavorite": {
+        "className": "laptop",
+        "textContent": {
+          "text": "",
+          "type": "button",
+          "textColor": "",
+          "textWeight": ""
+        },
+        "variant": "outlined",
+        "buttonSize": "medium",
+        "color": "secondary-light",
+        "disabled": false,
+        "startIcon": {
+          "iconName": "heart",
+          "size": "14",
+          "color": "secondary-light",
+          "className": ""
+        },
+        "handler" : "favorite"
+      },
+      "buttonCart": {
         "className": "laptop",
         "textContent": {
           "text": "",
@@ -39,7 +59,8 @@
           "size": "14",
           "color": "black",
           "className": ""
-        }
+        },
+        "handler" : "cart"
       }
     },
     {
@@ -64,7 +85,27 @@
         "textColor": "",
         "textWeight": ""
       },
-      "button": {
+      "buttonFavorite": {
+        "className": "laptop",
+        "textContent": {
+          "text": "",
+          "type": "button",
+          "textColor": "",
+          "textWeight": ""
+        },
+        "variant": "outlined",
+        "buttonSize": "medium",
+        "color": "secondary-light",
+        "disabled": false,
+        "startIcon": {
+          "iconName": "heart",
+          "size": "14",
+          "color": "secondary-light",
+          "className": ""
+        },
+        "handler" : "favorite"
+      },
+      "buttonCart": {
         "className": "console",
         "textContent": {
           "text": "",
@@ -81,7 +122,8 @@
           "size": "14",
           "color": "black",
           "className": ""
-        }
+        },
+        "handler" : "cart"
       }
     },
     {
@@ -106,7 +148,27 @@
         "textColor": "",
         "textWeight": ""
       },
-      "button": {
+      "buttonFavorite": {
+        "className": "laptop",
+        "textContent": {
+          "text": "",
+          "type": "button",
+          "textColor": "",
+          "textWeight": ""
+        },
+        "variant": "outlined",
+        "buttonSize": "medium",
+        "color": "secondary-light",
+        "disabled": false,
+        "startIcon": {
+          "iconName": "heart",
+          "size": "14",
+          "color": "secondary-light",
+          "className": ""
+        },
+        "handler" : "favorite"
+      },
+      "buttonCart": {
         "className": "PC",
         "textContent": {
           "text": "",
@@ -123,7 +185,8 @@
           "size": "14",
           "color": "black",
           "className": ""
-        }
+        },
+        "handler" : "cart"
       }
     },
     {
@@ -148,7 +211,27 @@
         "textColor": "",
         "textWeight": ""
       },
-      "button": {
+      "buttonFavorite": {
+        "className": "laptop",
+        "textContent": {
+          "text": "",
+          "type": "button",
+          "textColor": "",
+          "textWeight": ""
+        },
+        "variant": "outlined",
+        "buttonSize": "medium",
+        "color": "secondary-light",
+        "disabled": false,
+        "startIcon": {
+          "iconName": "heart",
+          "size": "14",
+          "color": "secondary-light",
+          "className": ""
+        },
+        "handler" : "favorite"
+      },
+      "buttonCart": {
         "className": "PC",
         "textContent": {
           "text": "",
@@ -165,7 +248,8 @@
           "size": "14",
           "color": "black",
           "className": ""
-        }
+        },
+        "handler" : "cart"
       }
     },
     {
@@ -190,7 +274,27 @@
         "textColor": "",
         "textWeight": ""
       },
-      "button": {
+      "buttonFavorite": {
+        "className": "laptop",
+        "textContent": {
+          "text": "",
+          "type": "button",
+          "textColor": "",
+          "textWeight": ""
+        },
+        "variant": "outlined",
+        "buttonSize": "medium",
+        "color": "secondary-light",
+        "disabled": false,
+        "startIcon": {
+          "iconName": "heart",
+          "size": "14",
+          "color": "secondary-light",
+          "className": ""
+        },
+        "handler" : "favorite"
+      },
+      "buttonCart": {
         "className": "PC",
         "textContent": {
           "text": "",
@@ -207,7 +311,8 @@
           "size": "14",
           "color": "black",
           "className": ""
-        }
+        },
+        "handler" : "cart"
       }
     },
     {
@@ -232,7 +337,27 @@
         "textColor": "",
         "textWeight": ""
       },
-      "button": {
+      "buttonFavorite": {
+        "className": "laptop",
+        "textContent": {
+          "text": "",
+          "type": "button",
+          "textColor": "",
+          "textWeight": ""
+        },
+        "variant": "outlined",
+        "buttonSize": "medium",
+        "color": "secondary-light",
+        "disabled": false,
+        "startIcon": {
+          "iconName": "heart",
+          "size": "14",
+          "color": "secondary-light",
+          "className": ""
+        },
+        "handler" : "favorite"
+      },
+      "buttonCart": {
         "className": "PC",
         "textContent": {
           "text": "",
@@ -249,7 +374,8 @@
           "size": "14",
           "color": "black",
           "className": ""
-        }
+        },
+        "handler" : "cart"
       }
     },
     {
@@ -274,7 +400,27 @@
         "textColor": "",
         "textWeight": ""
       },
-      "button": {
+      "buttonFavorite": {
+        "className": "laptop",
+        "textContent": {
+          "text": "",
+          "type": "button",
+          "textColor": "",
+          "textWeight": ""
+        },
+        "variant": "outlined",
+        "buttonSize": "medium",
+        "color": "secondary-light",
+        "disabled": false,
+        "startIcon": {
+          "iconName": "heart",
+          "size": "14",
+          "color": "secondary-light",
+          "className": ""
+        },
+        "handler" : "favorite"
+      },
+      "buttonCart": {
         "className": "laptop",
         "textContent": {
           "text": "",
@@ -291,7 +437,8 @@
           "size": "14",
           "color": "black",
           "className": ""
-        }
+        },
+        "handler" : "cart"
       }
     },
     {
@@ -316,7 +463,27 @@
         "textColor": "",
         "textWeight": ""
       },
-      "button": {
+      "buttonFavorite": {
+        "className": "laptop",
+        "textContent": {
+          "text": "",
+          "type": "button",
+          "textColor": "",
+          "textWeight": ""
+        },
+        "variant": "outlined",
+        "buttonSize": "medium",
+        "color": "secondary-light",
+        "disabled": false,
+        "startIcon": {
+          "iconName": "heart",
+          "size": "14",
+          "color": "secondary-light",
+          "className": ""
+        },
+        "handler" : "favorite"
+      },
+      "buttonCart": {
         "className": "laptop",
         "textContent": {
           "text": "",
@@ -333,7 +500,8 @@
           "size": "14",
           "color": "black",
           "className": ""
-        }
+        },
+        "handler" : "cart"
       }
     },
     {
@@ -358,7 +526,27 @@
         "textColor": "",
         "textWeight": ""
       },
-      "button": {
+      "buttonFavorite": {
+        "className": "laptop",
+        "textContent": {
+          "text": "",
+          "type": "button",
+          "textColor": "",
+          "textWeight": ""
+        },
+        "variant": "outlined",
+        "buttonSize": "medium",
+        "color": "secondary-light",
+        "disabled": false,
+        "startIcon": {
+          "iconName": "heart",
+          "size": "14",
+          "color": "secondary-light",
+          "className": ""
+        },
+        "handler" : "favorite"
+      },
+      "buttonCart": {
         "className": "console",
         "textContent": {
           "text": "",
@@ -375,7 +563,8 @@
           "size": "14",
           "color": "black",
           "className": ""
-        }
+        },
+        "handler" : "cart"
       }
     },
     {
@@ -400,7 +589,27 @@
         "textColor": "",
         "textWeight": ""
       },
-      "button": {
+      "buttonFavorite": {
+        "className": "laptop",
+        "textContent": {
+          "text": "",
+          "type": "button",
+          "textColor": "",
+          "textWeight": ""
+        },
+        "variant": "outlined",
+        "buttonSize": "medium",
+        "color": "secondary-light",
+        "disabled": false,
+        "startIcon": {
+          "iconName": "heart",
+          "size": "14",
+          "color": "secondary-light",
+          "className": ""
+        },
+        "handler" : "favorite"
+      },
+      "buttonCart": {
         "className": "console",
         "textContent": {
           "text": "",
@@ -417,7 +626,8 @@
           "size": "14",
           "color": "black",
           "className": ""
-        }
+        },
+        "handler" : "cart"
       }
     },
     {
@@ -442,7 +652,27 @@
         "textColor": "",
         "textWeight": ""
       },
-      "button": {
+      "buttonFavorite": {
+        "className": "laptop",
+        "textContent": {
+          "text": "",
+          "type": "button",
+          "textColor": "",
+          "textWeight": ""
+        },
+        "variant": "outlined",
+        "buttonSize": "medium",
+        "color": "secondary-light",
+        "disabled": false,
+        "startIcon": {
+          "iconName": "heart",
+          "size": "14",
+          "color": "secondary-light",
+          "className": ""
+        },
+        "handler" : "favorite"
+      },
+      "buttonCart": {
         "className": "laptop",
         "textContent": {
           "text": "",
@@ -459,7 +689,8 @@
           "size": "14",
           "color": "black",
           "className": ""
-        }
+        },
+        "handler" : "cart"
       }
     },
     {
@@ -484,7 +715,27 @@
         "textColor": "",
         "textWeight": ""
       },
-      "button": {
+      "buttonFavorite": {
+        "className": "laptop",
+        "textContent": {
+          "text": "",
+          "type": "button",
+          "textColor": "",
+          "textWeight": ""
+        },
+        "variant": "outlined",
+        "buttonSize": "medium",
+        "color": "secondary-light",
+        "disabled": false,
+        "startIcon": {
+          "iconName": "heart",
+          "size": "14",
+          "color": "secondary-light",
+          "className": ""
+        },
+        "handler" : "favorite"
+      },
+      "buttonCart": {
         "className": "console",
         "textContent": {
           "text": "",
@@ -501,7 +752,8 @@
           "size": "14",
           "color": "black",
           "className": ""
-        }
+        },
+        "handler" : "cart"
       }
     }
   ]

@@ -15,6 +15,7 @@
 *   disabled: Boolean ?,
 *   startIcon: IconDef ?,
 *   endIcon: IconDef ?,
+*   handler: String ?,
 * }} ButtonDef
 */
 
@@ -47,6 +48,19 @@
 *   button: ButtonDef ?,
 * }} CardDef
 */
+
+/**
+* @typedef {{
+  *   message: TypographyDef ?,
+  *   variant: 'default' | 'error' | 'warning' | 'info' | 'succsess' ?,
+  *   position: 'top-center' | 'top-right' | 'bottom-right' |
+  *             'bottom-center' | 'bottom-left' | 'top-left' ?,
+  *   transition: 'left' | 'up' | 'right' | 'down' ?,
+  *   startIcon: IconDef ?,
+  *   endIcon: IconDef ?,
+  *   button: ButtonDef ?,
+  * }} SnackbarDef
+  */
 
 
 

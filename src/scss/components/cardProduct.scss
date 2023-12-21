@@ -20,7 +20,6 @@
 
 .card-product__title {
   @include textStyle(center, none, $secondary 1px 0 10px);
-  flex: 1 1 auto;
 }
 
 .card-product__description{
@@ -46,6 +45,10 @@
     position: absolute;
     z-index: 3;
   }
+}
+
+.card-product__img {
+  flex: 1 1 auto;
 }
 
 .card-product__footer {

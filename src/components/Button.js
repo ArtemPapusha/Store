@@ -1,5 +1,6 @@
 import Icon from '@/components/Icon';
 import Typography from '@/components/Typography';
+import Snackbar from '@/components/Snackbar';
 
 class Button {
   #$buttonElement;
@@ -11,6 +12,7 @@ class Button {
   #disabled
   #startIcon = null;
   #endIcon = null;
+  #handler = null;
 
   /**
    * @param { ButtonDef } args
@@ -23,7 +25,8 @@ class Button {
     color = 'danger',
     disabled = false,
     startIcon = null,
-    endIcon = null
+    endIcon = null,
+    handler = ''
   }) {
     this.#className = className;
     this.type = 'button';
@@ -46,7 +49,10 @@ class Button {
       this.#endIcon = new Icon(endIcon);
     }
 
+    this.#handler = handler;
+
     this.buildButton();
+    this.buttonHandlers();
   }
 
   get $buttonElement() {
@@ -57,8 +63,6 @@ class Button {
     const $button = document.createElement('button');
 
     $button.setAttribute('type', this.type);
-
-    $button.setAttribute('disabled', 'disabled');
   
     const $text = document.createElement('span');
     $text.innerText = `${this.text}`;
@@ -81,7 +85,6 @@ class Button {
 
     $button.classList.add(this.#buttonSize);
 
-
     $button.classList.add(`bgc-${this.#color}`);
 
     $button.classList.add(`br-${this.#color}`);
@@ -93,6 +96,56 @@ class Button {
     }
 
     this.#$buttonElement = $button;
+  }
+
+  buttonHandlers = async () => {
+    if (this.#handler === 'cart') {
+      this.#$buttonElement.addEventListener('click', () => {
+        this.addSnackbar({
+          message: {
+            text: 'Added to cart!',
+            type: 'body2',
+            textColor: 'white',
+            textWeight: '700'
+          },
+          variant: 'default',
+          position: 'bottom-left',
+          transition: 'up',
+          startIcon: {
+            iconName: 'checkbox-checked',
+            size: '16',
+            color: 'white',
+            className: 'mx-6'
+          }
+        })
+
+        setTimeout(() => {
+          this.removeSnackbar();
+        }, 4000); 
+      });
+    } 
+  }
+
+  addSnackbar = (snackbar) => {
+    const $snackbar = new Snackbar(snackbar);
+    const $snackbarsContainer = document.querySelector('.snackbar__container');
+
+    if (document.body.contains($snackbarsContainer)) {
+      $snackbarsContainer.appendChild($snackbar.snackbar);
+    }
+
+    return this;
+  }
+
+  removeSnackbar = () => {
+    const $snackbarsContainer = document.querySelector('.snackbar__container');
+    const $snackbar = document.body.querySelector('.snackbar');
+    
+    if ($snackbarsContainer.contains($snackbar)) {
+      $snackbar.remove();
+    }
+
+    return this;
   }
 }
 

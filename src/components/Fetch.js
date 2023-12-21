@@ -1,5 +1,6 @@
 import ListCards from '@/components/ListCards';
 import ProductAPI from '@/services/PoductAPI';
+import CardProduct from "@/components/CardProduct";
 const listCards = new ListCards();
 const productAPI = new ProductAPI();
 

@@ -1,13 +1,15 @@
 import Button from '@/components/Button';
 import Typography from '@/components/Typography';
 
+
 class CardProduct {
   #name;
   #title = null;
   #image;
   #description = null;
   #price = null;
-  #button = null;
+  #buttonCart = null;
+  #buttonFavorite = null;
   #$cardWrapper;
   
  /**
@@ -19,7 +21,8 @@ class CardProduct {
       image = '',
       description = null,
       price = null,
-      button = null
+      buttonFavorite = null,
+      buttonCart = null
     }) {
     this.#name = name;
 
@@ -41,10 +44,13 @@ class CardProduct {
     this.buildImage();
     this.buildDescription();
     this.buildPrice();
+
+    if(buttonFavorite) {
+      this.#buttonFavorite = new Button(buttonFavorite);
+    }
    
-    
-    if(button) {
-      this.#button = new Button(button);
+    if(buttonCart) {
+      this.#buttonCart = new Button(buttonCart);
     }
 
     this.buildCardWrapper();
@@ -65,11 +71,15 @@ class CardProduct {
 
     const $footerCardProduct = document.createElement('div');
 
-    $footerCardProduct.classList.add('card-product__footer', 'gap-30');
+    $footerCardProduct.classList.add('card-product__footer', 'gap-20');
     $footerCardProduct.appendChild(this.#price);
 
-    if (this.#button) {
-      $footerCardProduct.appendChild(this.#button.$buttonElement);
+    if (this.#buttonFavorite) {
+      $footerCardProduct.appendChild(this.#buttonFavorite.$buttonElement);
+    }
+
+    if (this.#buttonCart) {
+      $footerCardProduct.appendChild(this.#buttonCart.$buttonElement);
     }
 
     $cardWrapper.appendChild($footerCardProduct);
@@ -92,13 +102,17 @@ class CardProduct {
   }
 
   buildImage = () => {
+    const $imgWrapper = document.createElement('div');
+    $imgWrapper.className = `card-product__img`;
+
     const $image = document.createElement('img');
 
     $image.className = `card-product__img card-product__img--${this.#name}`;
     $image.setAttribute('src', `${this.#image}`);
     $image.setAttribute('alt', `${this.#image}`);
+    $imgWrapper.appendChild($image);
 
-    this.#image = $image;
+    this.#image = $imgWrapper;
   }
 
   buildDescription = () => {
