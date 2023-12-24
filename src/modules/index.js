@@ -1,9 +1,38 @@
 import '~/modules/index.scss';
 
-import Fetch from '@/components//Fetch';
+import ListCards from '@/components/ListCards';
+import ProductAPI from '@/services/PoductAPI';
+import Loading from '@/components/Loading';
 
-const fetchProduct = new Fetch();
+
+const loading = new Loading()
+const listCards = new ListCards();
+const productAPI = new ProductAPI();
 
 
-fetchProduct.fetchCards();
+function listProductsLoader(show) {
+
+  show ? listCards.addSkeletonCards(12) : listCards.removeSkeletonCards();
+  
+}
+
+function addCards(data) {
+    data?.forEach(card => {
+      listCards.addCard(card);
+    });
+}
+
+
+
+async function fetchCards() {
+
+  await productAPI.getProducts(listProductsLoader, addCards);
+
+}
+
+listCards.render();
+
+listCards.addPagination();
+
+fetchCards();
 
