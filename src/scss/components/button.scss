@@ -34,6 +34,20 @@
   }
 }
 
+.text-circle {
+  outline: 0;
+  border: 0;
+  background-color: $white;
+  border-radius: 100%;
+
+  &:hover {
+    background-color: $secondary-light;
+  }
+  &:focus {
+    border: 0;
+  }
+}
+
 .contained {
   color: $black;
   outline: 0;
@@ -44,9 +58,26 @@
   }
 }
 
+.contained-circle {
+  color: $black;
+  outline: 0;
+  border: 0;
+  border-radius: 100%;
+
+  &:focus {
+    border: 0;
+  }
+}
+
 .outlined {
   outline: 0;
   background-color: $white;
+}
+
+.outlined-circle {
+  outline: 0;
+  background-color: $white;
+  border-radius: 100%;
 }
 
 .disabled {

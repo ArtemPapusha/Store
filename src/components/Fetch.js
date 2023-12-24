@@ -7,7 +7,10 @@ const productAPI = new ProductAPI();
 class Fetch {
 
   constructor() {
+    
     listCards.render();
+
+    listCards.addPagination();
   }
 
   listProductsLoader = (show) => {
@@ -20,12 +23,13 @@ class Fetch {
       data?.forEach(card => {
         listCards.addCard(card);
       });
- 
   }
 
   fetchCards = async () => {
   
     await productAPI.getProducts(this.listProductsLoader, this.addCards);
+
+    const $firstPage = document.getElementById('page_1');
 
   }
 

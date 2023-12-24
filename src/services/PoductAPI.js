@@ -59,6 +59,61 @@ class ProductAPI {
     }
   }
 
+  getFirstPageProducts = async (handlerLoader, handlerCards) => {
+    const { endpoint, url, method } = productsEndpoint;
+    let data;
+
+    try {
+      handlerLoader(true);
+
+      const response = await fetch(`${API_HOST}${url}?_page=1&_limit=3`, { method });
+ 
+      data = await response.json();
+
+      if(data && data?.length){
+        handlerCards(data);
+      }
+    } catch (error) {
+    
+      console.log('getProducts => error', error);
+
+    } finally {
+      if (data && data?.length) {
+
+        handlerLoader(false);
+
+      } else {
+        handlerLoader(true);
+
+        setTimeout(() => {
+          this.addSnackbar({
+            message: {
+              text: 'Something went wrong',
+              type: 'body2',
+              textColor: 'white',
+              textWeight: '700'
+            },
+            variant: 'error',
+            position: 'bottom-left',
+            transition: 'up',
+            startIcon: {
+              iconName: 'sad2',
+              size: '16',
+              color: 'white',
+              className: 'mx-6'
+            }
+          })
+        }, 2000);
+  
+        setTimeout(() => {
+          this.removeSnackbar();
+        }, 6000); 
+      }
+
+      console.log('getProducts => finally', endpoint);
+    }
+  }
+
   addSnackbar = (snackbar) => {
     const $snackbar = new Snackbar(snackbar);
     const $snackbarsContainer = document.querySelector('.snackbar__container');

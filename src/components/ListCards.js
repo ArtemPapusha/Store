@@ -1,7 +1,8 @@
-import Button from '@/components/Button';
+
 import Loading from '@/components/Loading';
 import CardProduct from "@/components/CardProduct";
-import ProductAPI from '@/services/PoductAPI';
+import Pagination from "@/components/Pagination";
+
 
 class ListCards {
   $listCards;
@@ -17,12 +18,24 @@ class ListCards {
   render = () => {
     document.body.appendChild(this.$listCards);
   }
+
  /**
    * @param { CardDef } card
   */
   addCard = (card) => {
     const $card = new CardProduct(card);
     this.$listCards.appendChild($card.$cardWrapper);
+    return this;
+  }
+
+  addPagination = () => {
+    const $pagination = new Pagination({
+      count: 4,
+      variant: 'outlined',
+      color: 'black',
+      size: 'medium'
+    })
+    document.body.appendChild($pagination.pagination);
     return this;
   }
 

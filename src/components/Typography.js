@@ -25,10 +25,10 @@ class Typography {
    * @param { TypographyDef } args
   */
   constructor({
-    text,
-    type,
+    text = 'Write something here',
+    type = 'body1',
     textColor = 'black',
-    textWeight
+    textWeight = '400'
   }) {
 
     this.#text = text;

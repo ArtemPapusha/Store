@@ -7,9 +7,9 @@
 
 /**
 * @typedef {{
-*  className: String,
+*   className: String ?,
 *   textContent: TypographyDef ?,
-*   variant: 'text' | 'contained' | 'outlined' ?,
+*   variant: 'text' | 'text-circle' | 'contained' | 'contained-circle' | 'outlined' | 'outlined-circle' ?,
 *   buttonSize: 'small' | 'medium' | 'large' ?,
 *   color: ColorDef ?,
 *   disabled: Boolean ?,
@@ -47,6 +47,15 @@
 *   price: TypographyDef ?,
 *   button: ButtonDef ?,
 * }} CardDef
+*/
+
+/**
+* @typedef {{
+*   count: Number ,
+*   variant: 'text' | 'text-circle' | 'contained' | 'contained-circle' | 'outlined' | 'outlined-circle' ?,
+*   color: ColorDef ?,
+*   size: 'small' | 'medium' | 'large' ?,
+* }} PaginationDef
 */
 
 /**

@@ -48,17 +48,21 @@ $cardWrapperSkeleton = null;
 
     $priceSkeleton.className = `priceSkeleton skeleton`;
 
-    const $buttonSkeleton = document.createElement('div');
+    const $buttonFirstSkeleton = document.createElement('div');
 
-    $buttonSkeleton.className = `buttonSkeleton skeleton`;
+    $buttonFirstSkeleton.className = `buttonSkeleton skeleton`;
+
+    const $buttonSecondSkeleton = document.createElement('div');
+
+    $buttonSecondSkeleton.className = `buttonSkeleton skeleton`;
 
 
     $footerCardProductSkeleton.appendChild($priceSkeleton);
 
-  
-    $footerCardProductSkeleton.appendChild($buttonSkeleton);
-    
+    $footerCardProductSkeleton.appendChild($buttonFirstSkeleton);
 
+    $footerCardProductSkeleton.appendChild($buttonSecondSkeleton);
+    
     $cardWrapperSkeleton.appendChild($footerCardProductSkeleton);
 
     this.$cardWrapperSkeleton = $cardWrapperSkeleton;
