@@ -1,12 +1,12 @@
 .button {
-  @include flexContainer(row, center, center);
   cursor: pointer;
   min-width: 35px;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
   color: $black;
-  border: 1px solid $secondary-dark;
+  font-size: 16px;
+  padding: 8px;
 
   &:hover {
     color: $secondary;
@@ -19,71 +19,106 @@
     transform: translateY(0);
     box-shadow: $secondary 1px 0 10px;
   }
-}
 
-.text {
-  outline: 0;
-  border: 0;
-  background-color: $white;
-
-  &:hover {
-    background-color: $secondary-light;
-  }
-  &:focus {
+  &-text {
+    outline: 0;
     border: 0;
+    background-color: $white;
+  
+    &:hover {
+      background-color: $secondary-light;
+    }
+    &:focus {
+      border: 0;
+    }
   }
-}
 
-.contained {
-  color: $black;
-  outline: 0;
-  border: 0;
-
-  &:focus {
+  &-text-circle {
+    outline: 0;
     border: 0;
+    background-color: $white;
+    border-radius: 100%;
+  
+    &:hover {
+      background-color: $secondary-light;
+    }
+    &:focus {
+      border: 0;
+    }
   }
-}
 
-.outlined {
-  outline: 0;
-  background-color: $white;
-}
+  &-contained {
+    color: $black;
+    outline: 0;
+    border: 0;
+  
+    &:focus {
+      border: 0;
+    }
+  }
 
-.disabled {
-  color: $secondary-light;
-  border: 1px solid $secondary-light;
-  background-color: $white;
-  cursor: none;
-  box-shadow: none;
+  &-contained-circle {
+    color: $black;
+    outline: 0;
+    border: 0;
+    border-radius: 100%;
+  
+    &:focus {
+      border: 0;
+    }
+  }
 
-  &:hover,
-  &:active,
-  &:focus{
+  &-outlined {
+    outline: 0;
+    background-color: $white;
+  }
+
+  &-outlined-circle {
+    outline: 0;
+    background-color: $white;
+    border-radius: 100%;
+  }
+
+  &-small {
+    font-size: 10px;
+    padding: 5px;
+    }
+
+  &-large {
+    font-size: 22px;
+    padding: 11px;
+  }
+
+  &-disabled {
     color: $secondary-light;
     border: 1px solid $secondary-light;
     background-color: $white;
-    cursor: not-allowed;;
+    cursor: none;
     box-shadow: none;
-    transform: none;
+  
+    &:hover,
+    &:active,
+    &:focus{
+      color: $secondary-light;
+      border: 1px solid $secondary-light;
+      background-color: $white;
+      cursor: not-allowed;;
+      box-shadow: none;
+      transform: none;
+    }
+  
+    .icon{
+      color: $secondary-light
+    }
   }
-
-  .icon{
-    color: $secondary-light
-  }
+  
 }
 
-.small {
-font-size: 10px;
-padding: 5px;
-}
 
-.medium {
-  font-size: 16px;
-  padding: 8px;
-}
 
-.large {
-  font-size: 22px;
-  padding: 11px;
-}
+
+
+
+
+
 

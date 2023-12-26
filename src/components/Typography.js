@@ -25,10 +25,10 @@ class Typography {
    * @param { TypographyDef } args
   */
   constructor({
-    text,
-    type,
+    text = '',
+    type = 'body1',
     textColor = 'black',
-    textWeight
+    textWeight = '400'
   }) {
 
     this.#text = text;
@@ -36,13 +36,16 @@ class Typography {
     this.#color = textColor;
     this.#weight = textWeight;
 
-    this.buildTypograpthyElement();
+    this.buildTypographyElement();
   }
 
-  buildTypograpthyElement = () => {
+  buildTypographyElement = () => {
     const $typography = document.createElement(this.getElement());
+
     $typography.className = `typography-${this.#type} text-${this.#color} font-weight--${this.#weight} typography`;
+
     $typography.innerText = this.#text;
+    
     this.#$textCell = $typography;
   }
 

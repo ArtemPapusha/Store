@@ -4,13 +4,14 @@ import Typography from '@/components/Typography';
 class Button {
   #$buttonElement;
   #className;
-  #textContent
-  #variant
+  #textContent;
+  #variant;
   #buttonSize;
-  #color
-  #disabled
+  #color;
+  #disabled;
   #startIcon = null;
   #endIcon = null;
+  #handleClick;
 
   /**
    * @param { ButtonDef } args
@@ -19,32 +20,38 @@ class Button {
     className = '',
     textContent = null,
     variant = 'contained',
-    buttonSize = 'medium',
-    color = 'danger',
+    buttonSize = '',
+    color = 'black',
     disabled = false,
     startIcon = null,
-    endIcon = null
+    endIcon = null,
+    handleClick
   }) {
     this.#className = className;
-    this.type = 'button';
+
     this.#textContent = textContent;
 
     if(textContent) {
       this.#textContent = new Typography(textContent);
-    };
+    }
 
     this.#variant = variant;
+
     this.#buttonSize = buttonSize;
+
     this.#color = color;
+
     this.#disabled = disabled;
-    
     
     if(startIcon) {
       this.#startIcon = new Icon(startIcon);
     }
+    
     if(endIcon) {
       this.#endIcon = new Icon(endIcon);
     }
+
+    this.#handleClick = handleClick;
 
     this.buildButton();
   }
@@ -56,12 +63,9 @@ class Button {
   buildButton = () => {
     const $button = document.createElement('button');
 
-    $button.setAttribute('type', this.type);
+    $button.setAttribute('type', 'button');
 
-    $button.setAttribute('disabled', 'disabled');
-  
-    const $text = document.createElement('span');
-    $text.innerText = `${this.text}`;
+    $button.addEventListener('click', this.#handleClick)
     
     if (this.#startIcon) {
       $button.appendChild(this.#startIcon.$icon);
@@ -75,25 +79,16 @@ class Button {
       $button.appendChild(this.#endIcon.$icon);
     }
     
-    $button.classList.add('button', `button-${this.#className}`);
-
-    $button.classList.add(this.#variant);
-
-    $button.classList.add(this.#buttonSize);
-
-
-    $button.classList.add(`bgc-${this.#color}`);
-
-    $button.classList.add(`br-${this.#color}`);
-
+    $button.className = `button d-flex just-content-center align-items-center flex-direction-row button-${this.#className} button-${this.#variant} button-${this.#buttonSize} bgc-${this.#color} br-${this.#color}`;
 
     if (this.#disabled) {
       $button.setAttribute('disabled', 'disabled');
-      $button.classList.add('disabled');
+      $button.classList.add('button-disabled');
     }
 
     this.#$buttonElement = $button;
   }
+
 }
 
 export default Button;
