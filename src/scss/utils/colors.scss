@@ -41,15 +41,11 @@ $colors: (
   .text-#{$color-name} {
     color: $color-value;
   }
-}
 
-@each $color-name, $color-value in $colors {
   .bgc-#{$color-name} {
     background-color: $color-value;
   }
-}
 
-@each $color-name, $color-value in $colors {
   .br-#{$color-name} {
     border: 1px solid $color-value;
   }

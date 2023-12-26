@@ -1,5 +1,4 @@
 .pagination_container {
-  @include flexContainer(row, center, center);
   list-style-type: none;
   padding: 0;
 }
@@ -8,6 +7,7 @@
   min-width: 30px;
   box-sizing: border-box;
   color: $black;
+  padding: 8px;
 
   &:hover {
     background-color: $secondary-light;
@@ -19,62 +19,56 @@
     transform: translateY(0);
     box-shadow: $secondary 1px 0 10px;
   }
-}
 
-.pagination_item--text {
-  outline: 0;
-  border: 0;
-  background-color: $white;
-  border-radius: 5px;
-}
+  &--text {
+    outline: 0;
+    border: 0;
+    background-color: $white;
+    border-radius: 5px;
+  }
 
-.pagination_item--contained {
-  color: $black;
-  outline: 0;
-  border: 0;
-  border-radius: 5px;
-}
+  &--contained {
+    color: $black;
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+  }
 
-.pagination_item--outlined {
-  outline: 0;
-  border-radius: 5px;
-  background-color: $white;
-}
+  &--outlined {
+    outline: 0;
+    border-radius: 5px;
+    background-color: $white;
+  }
 
-.pagination_item--text-circle {
-  outline: 0;
-  border: 0;
-  background-color: $white;
-  border-radius: 100%;
-}
+  &--text-circle {
+    outline: 0;
+    border: 0;
+    background-color: $white;
+    border-radius: 100%;
+  }
 
-.pagination_item--contained-circle {
-  color: $black;
-  outline: 0;
-  border: 0;
-  border-radius: 100%;
-}
+  &--contained-circle {
+    color: $black;
+    outline: 0;
+    border: 0;
+    border-radius: 100%;
+  }
 
-.pagination_item--outlined-circle {
-  outline: 0;
-  background-color: $white;
-  border-radius: 100%;
-}
+  &--outlined-circle {
+    outline: 0;
+    background-color: $white;
+    border-radius: 100%;
+  }
 
-.pagination_item--small {
-  font-size: 10px;
-  line-height: 1.5;
-  padding: 5px;
-}
+  &--small {
+    font-size: 10px;
+    line-height: 1.5;
+    padding: 5px;
+  }
 
-.pagination_item--medium {
-  font-size: 14px;
-  line-height: 0.8;
-  padding: 10px;
-}
-
-.pagination_item--large {
-  font-size: 20px;
-  line-height: 0.8;
-  padding: 12px;
+  &--large {
+    font-size: 20px;
+    line-height: 0.8;
+    padding: 12px;
+  }
 }

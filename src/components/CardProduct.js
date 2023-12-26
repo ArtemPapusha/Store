@@ -1,7 +1,6 @@
 import Button from '@/components/Button';
 import Typography from '@/components/Typography';
 
-
 class CardProduct {
   #name;
   #title = null;
@@ -21,37 +20,68 @@ class CardProduct {
       image = '',
       description = null,
       price = null,
-      buttonFavorite = null,
-      buttonCart = null
     }) {
     this.#name = name;
 
     if(title) {
-      this.#title = new Typography(title);
-    };
+      this.#title = new Typography({
+        text: title,
+        type: 'h6',
+      })
+    }
 
     this.#image = image;
  
     if(description) {
-      this.#description = new Typography(description);
-    };
+      this.#description = new Typography({
+        text: description,
+        type: 'body2'
+      })
+    }
   
     if(price) {
-      this.#price = new Typography(price);
-    };
+      this.#price = new Typography({
+        text: price + ` грн`,
+        type: 'caption'
+      })
+    }
     
     this.buildTitle();
     this.buildImage();
     this.buildDescription();
     this.buildPrice();
 
-    if(buttonFavorite) {
-      this.#buttonFavorite = new Button(buttonFavorite);
-    }
-   
-    if(buttonCart) {
-      this.#buttonCart = new Button(buttonCart);
-    }
+    this.#buttonFavorite = new Button({
+      className: name,
+      textContent: {
+        type: 'button'
+      },
+      variant: 'outlined',
+      buttonSize: 'medium',
+      color: 'secondary-light',
+      disabled: false,
+      startIcon: {
+        iconName: 'heart',
+        size: '14',
+        color: "secondary-light",
+      }
+    })
+
+    this.#buttonCart = new Button({
+      className: name,
+      textContent: {
+        type: 'button'
+      },
+      variant: 'outlined',
+      buttonSize: 'medium',
+      color: 'secondary-light',
+      disabled: false,
+      startIcon: {
+        iconName: 'cart',
+        size: '14',
+        color: "black",
+      }
+    })
 
     this.buildCardWrapper();
 
@@ -64,14 +94,14 @@ class CardProduct {
   buildCardWrapper = () => {
     const $cardWrapper = document.createElement('div');
 
-    $cardWrapper.className = `card-wrapper card-wrapper--${this.#name} wd-200 py-6 px-6 gap-20 my-6 mx-6`;
+    $cardWrapper.className = `card-wrapper d-flex flex-direction-column just-content-flex-start align-items-center flex-wrap-wrap card-wrapper--${this.#name} wd-20 py-3 px-3 gap-10 my-3 mx-3`;
 
     $cardWrapper.appendChild(this.#title);
     $cardWrapper.appendChild(this.#image);
 
     const $footerCardProduct = document.createElement('div');
 
-    $footerCardProduct.classList.add('card-product__footer', 'gap-20');
+    $footerCardProduct.className = 'card-product__footer d-flex flex-direction-row just-content-space-between align-items-center gap-10';
     $footerCardProduct.appendChild(this.#price);
 
     if (this.#buttonFavorite) {
@@ -109,7 +139,7 @@ class CardProduct {
 
     $image.className = `card-product__img card-product__img--${this.#name}`;
     $image.setAttribute('src', `${this.#image}`);
-    $image.setAttribute('alt', `${this.#image}`);
+    $image.setAttribute('alt', `${this.#name}`);
     $imgWrapper.appendChild($image);
 
     this.#image = $imgWrapper;
@@ -130,7 +160,7 @@ class CardProduct {
   buildPrice = () => {
     const $price = document.createElement('div');
 
-    $price.className = `card-product__price card-product__price--${this.#name} fs-18 py-4 px-4`;
+    $price.className = `card-product__price card-product__price--${this.#name} py-2 px-2`;
 
     if (this.#price) {
       $price.appendChild(this.#price.$textElement);

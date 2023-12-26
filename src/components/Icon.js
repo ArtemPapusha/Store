@@ -33,7 +33,7 @@ class Icon {
     $icon.className = `icon icon-${this.#iconName} text-${this.#color} fs-${this.#size}`;
 
     if (this.#className?.length) {
-      $icon.classList.add(this.#className);
+      $icon.className = `${this.#className}`
     }
 
     this.#icon = $icon;

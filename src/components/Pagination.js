@@ -12,7 +12,7 @@ class Pagination {
    /**
    * @param { PaginationDef } args
    */
-  constructor({ count, variant, color, size }) {
+  constructor({ count, variant = 'outlined', color, size }) {
     this.#count = count;
     this.#variant = variant;
     this.#color = color;
@@ -28,7 +28,7 @@ class Pagination {
 
   buildPagination = () => {
     const $paginationContainer = document.createElement('ul');
-    $paginationContainer.className = `pagination_container gap-2`;
+    $paginationContainer.className = `pagination_container d-flex just-content-center align-items-center gap-1`;
     
 
     $paginationContainer.appendChild(this.buildButtonFirstPage());

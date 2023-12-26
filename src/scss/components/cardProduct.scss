@@ -1,6 +1,4 @@
-
 .card-wrapper {
-  @include flexContainer(column, flex-start, center);
   border: 1px solid $black;
   border-radius: 5px;
   align-self: flex-start;
@@ -45,14 +43,11 @@
     position: absolute;
     z-index: 3;
   }
+
 }
 
 .card-product__img {
   flex: 1 1 auto;
-}
-
-.card-product__footer {
-  @include flexContainer(row, space-between, center);
 }
 
 .card-product__price {
@@ -63,15 +58,4 @@
   color: $secondary-dark;
 }
 
-.card-product__img--laptop:hover {
-  content: url('https://drive.google.com/uc?id=1GKhDayxzaHZN4Tzu5wNsH5BT31_3Q7Z_');
-}
-
-.card-product__img--console:hover {
-  content: url('https://drive.google.com/uc?id=1SZFdwuOMj82v7W1y2UxP_HMd8aJSIhea');
-}
-
-.card-product__img--PC:hover {
-  content: url('https://drive.google.com/uc?id=14Bu3MZP3meg23M1euiVjIf2Qk_v5pAVc');
-}
 

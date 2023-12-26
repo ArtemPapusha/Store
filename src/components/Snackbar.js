@@ -25,6 +25,7 @@ class Snackbar {
     endIcon = null,
     button = null
   }) {
+
     if(message) {
       this.#message = new Typography(message);
     };
@@ -59,13 +60,13 @@ class Snackbar {
   buildSnackbar = () => {
     if (!Snackbar.#$snackbarsContainer) {
       const $snackbarsContainer = document.createElement('div');
-      $snackbarsContainer.className = `snackbar__container snackbar__container--${this.#position} gap-6`;
+      $snackbarsContainer.className = `snackbar__container d-flex flex-direction-column just-content-flex-start align-items-center snackbar__container--${this.#position} gap-3`;
       document.body.appendChild($snackbarsContainer);
       Snackbar.#$snackbarsContainer = $snackbarsContainer;
     }
   
     const $snackbarBody = document.createElement('div');
-    $snackbarBody.className = `snackbar snackbar--${this.#variant} snackbar--${this.#transition}`;
+    $snackbarBody.className = `snackbar d-flex just-content-flex-start align-items-center snackbar--${this.#variant} snackbar--${this.#transition}`;
 
     if (this.#startIcon) {
       $snackbarBody.appendChild(this.#startIcon.$icon);
@@ -86,6 +87,25 @@ class Snackbar {
 
     this.#$snackbar = $snackbarBody;
 
+  }
+
+  addSnackbar = (snackbar) => {
+    const $snackbar = new Snackbar(snackbar);
+
+    if (document.body.contains(Snackbar.#$snackbarsContainer)) {
+      Snackbar.#$snackbarsContainer.appendChild($snackbar.snackbar);
+    }
+
+    return this;
+  }
+
+  removeSnackbar = () => {
+
+    if (Snackbar.#$snackbarsContainer.contains(this.#$snackbar)) {
+      this.#$snackbar.remove();
+    }
+
+    return this;
   }
 
 }

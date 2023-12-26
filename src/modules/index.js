@@ -2,10 +2,7 @@ import '~/modules/index.scss';
 
 import ListCards from '@/components/ListCards';
 import ProductAPI from '@/services/PoductAPI';
-import Loading from '@/components/Loading';
 
-
-const loading = new Loading()
 const listCards = new ListCards();
 const productAPI = new ProductAPI();
 
@@ -35,4 +32,6 @@ listCards.render();
 listCards.addPagination();
 
 fetchCards();
+
+
 
