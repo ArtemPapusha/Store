@@ -4,17 +4,19 @@ import { PRODUCTS_ROUTER, PRODUCT_ID_ROUTER, API_METHOD_GET, API_METHOD_POST } f
 import Snackbar from '@/components/Snackbar';
 
 class ProductAPI {
-  static productsEndpoint = () => endpoint(API_METHOD_GET, PRODUCTS_ROUTER)
-  static productIdEndpoint = (id) => endpoint(API_METHOD_GET, PRODUCT_ID_ROUTER(id))
+  static productsEndpoint = () => endpoint(API_METHOD_GET, PRODUCTS_ROUTER);
 
-  getProducts = async (handlerLoader, handlerCards) => {
+  static productIdEndpoint = (id) => endpoint(API_METHOD_GET, PRODUCT_ID_ROUTER(id));
+
+  getProducts = async (handlerLoader, handlerCards, page) => {
     const { endpoint, url, method } = ProductAPI.productsEndpoint();
+
     let data;
 
     try {
       handlerLoader(true);
 
-      const response = await fetch(`${API_HOST}${url}`, { method });
+      const response = await fetch(`${API_HOST}${url}?_page=${page}&_limit=3`, { method });
  
       data = await response.json();
 

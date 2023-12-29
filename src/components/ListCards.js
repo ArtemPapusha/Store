@@ -28,15 +28,40 @@ class ListCards {
     return this;
   }
 
-  addPagination = () => {
-    const $pagination = new Pagination({
-      count: 4,
-      variant: 'outlined',
-      color: 'black',
-      size: 'medium'
-    })
+  clearCards = () => {
+    this.$listCards.innerHTML = '';
+  }
+
+  addPagination = (pagination) => {
+    const $pagination = new Pagination(pagination)
 
     document.body.appendChild($pagination.pagination);
+
+    return this;
+  }
+
+  paginationDisabled = () => {
+    const $paginationItems = document.querySelectorAll('.pagination_item');
+
+    $paginationItems.forEach(item => {
+
+      item.setAttribute('disabled', 'disabled')
+
+      item.classList.add('pagination_item--disabled');
+    });
+
+    return this;
+  }
+
+  endPaginationDisabled = () => {
+    const $paginationItems = document.querySelectorAll('.pagination_item');
+
+    $paginationItems.forEach(item => {
+
+      item.removeAttribute('disabled')
+
+      item.classList.remove('pagination_item--disabled');
+    });
 
     return this;
   }
@@ -44,12 +69,12 @@ class ListCards {
   addSkeletonCards = (count) => {
 
   for (let i = 0; i < count; i++) {
+
     const $skeleton = new Skeleton();
 
-    this.$listCards.appendChild($skeleton.loadingSkeleton);
-    
+    this.$listCards.appendChild($skeleton.loadingSkeleton); 
   }
-  
+
     return this;
   }
 
@@ -58,6 +83,7 @@ class ListCards {
     const skeletonElements = this.$listCards.querySelectorAll('.card_wrapper_skeleton');
     
     skeletonElements.forEach(element => {
+
       element.remove();
     });
 
@@ -67,7 +93,7 @@ class ListCards {
   buildListCards = async () => {
     const $listCards = document.createElement('div');
     
-    $listCards.className = 'list-products d-flex flex-direction-row just-content-center flex-wrap-wrap'
+    $listCards.className = 'list-products d-flex flex-direction-row just-content-center flex-wrap-wrap';
    
      this.$listCards = $listCards;
   }

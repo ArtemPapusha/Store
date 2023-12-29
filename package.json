@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "webpack serve --config ./webpack/dev.config.js",
     "build": "webpack --config ./webpack/prod.config.js",
-    "db": "json-server --watch db.json --delay 2500"
+    "db": "json-server --watch db.json"
   },
   "devDependencies": {
     "css-loader": "^6.8.1",
