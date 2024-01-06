@@ -10,30 +10,33 @@ class ProductAPI {
 
   getProducts = async (handlerLoader, handlerCards, page) => {
     const { endpoint, url, method } = ProductAPI.productsEndpoint();
-
     let data;
 
     try {
       handlerLoader(true);
 
       const response = await fetch(`${API_HOST}${url}?_page=${page}&_limit=3`, { method });
- 
+
       data = await response.json();
 
       if(data && data?.length){
         handlerCards(data);
       }
+
+      return { value: response }
     } catch (error) {
     
       console.log('getProducts => error', error);
 
     } finally {
+
+      handlerLoader(false);
+
       if (data && data?.length) {
 
-        handlerLoader(false);
+       
 
       } else {
-        handlerLoader(true);
 
         setTimeout(() => {
           this.addSnackbar({
@@ -110,6 +113,22 @@ class ProductAPI {
     if ($snackbarsContainer.contains($snackbar)) {
       $snackbar.remove();
     }
+  }
+
+  getLastPage = async () => {
+    try {
+      const { endpoint, url, method } = ProductAPI.productsEndpoint();
+
+      const response = await fetch(`${API_HOST}${url}?_page=1&_limit=3`, { method });
+
+      window.test = response.headers;
+      let lastPage = parseInt(String(test.get("link")).split(",")[2].match(/page=(\d+)/)[1]);
+
+      return lastPage;
+    } catch (error) {
+      
+    }
+   
   }
 }
 

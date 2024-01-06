@@ -32,8 +32,10 @@ listCards.render();
 
 fetchCards(1);
 
+const totalPageCount = await productAPI.getLastPage();
+
 listCards.addPagination({
-  count: 4,
+  count: totalPageCount,
   variant: 'outlined',
   color: 'black',
   size: 'medium',

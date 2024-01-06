@@ -1,6 +1,7 @@
 import Skeleton from '@/components/Skeleton';
 import CardProduct from "@/components/CardProduct";
 import Pagination from "@/components/Pagination";
+import ProductAPI from '@/services/PoductAPI';
 
 class ListCards {
   $listCards;
@@ -45,7 +46,7 @@ class ListCards {
 
     $paginationItems.forEach(item => {
 
-      item.setAttribute('disabled', 'disabled')
+      item.setAttribute('disabled', 'disabled');
 
       item.classList.add('pagination_item--disabled');
     });
@@ -53,7 +54,7 @@ class ListCards {
     return this;
   }
 
-  endPaginationDisabled = () => {
+  endPaginationDisabled = async () => {
     const $paginationItems = document.querySelectorAll('.pagination_item');
 
     $paginationItems.forEach(item => {
@@ -63,6 +64,30 @@ class ListCards {
       item.classList.remove('pagination_item--disabled');
     });
 
+    const firstPage = document.querySelector('#page_1');
+    const paginationFirstPage = document.getElementById('pagination_first_page');
+    const paginationPreviousPage = document.getElementById('pagination_previous_page');
+    
+    if (firstPage && firstPage.classList.contains('pagination_item--active')) {
+      paginationFirstPage.setAttribute('disabled', 'disabled');
+      paginationFirstPage.classList.add('pagination_item--disabled');
+      paginationPreviousPage.setAttribute('disabled', 'disabled');
+      paginationPreviousPage.classList.add('pagination_item--disabled');
+    }
+
+    const productAPI = new ProductAPI();
+    const totalPageCount = await productAPI.getLastPage();
+    const lastPage = document.querySelector(`#page_${totalPageCount}`);
+    const paginationLastPage = document.getElementById('pagination_last_page');
+    const paginationNextPage = document.getElementById('pagination_next_page');
+        
+    if (lastPage && lastPage.classList.contains('pagination_item--active')) {
+      paginationLastPage.setAttribute('disabled', 'disabled');
+      paginationLastPage.classList.add('pagination_item--disabled');
+      paginationNextPage.setAttribute('disabled', 'disabled');
+      paginationNextPage.classList.add('pagination_item--disabled');
+    }
+    
     return this;
   }
 

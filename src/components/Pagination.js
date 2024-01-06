@@ -86,9 +86,10 @@ class Pagination {
 
     const $paginationItemToFirstPage = document.createElement('button');
 
-    $paginationItemToFirstPage.className = `pagination_item pagination_item--${this.#variant} bgc-${this.#color} br-${this.#color} pagination_item--${this.#size}`;
+    $paginationItemToFirstPage.className = `pagination_item pagination_item--${this.#variant} bgc-${this.#color} br-${this.#color} pagination_item--${this.#size} pagination_item--disabled`;
 
     $paginationItemToFirstPage.setAttribute('id', 'pagination_first_page');
+    $paginationItemToFirstPage.setAttribute('disabled', 'disabled');
 
     const $iconToFirstPage = new Icon({
       iconName: 'first',
@@ -110,9 +111,10 @@ class Pagination {
 
     const $paginationItemToPreviousPage = document.createElement('button');
 
-    $paginationItemToPreviousPage.className = `pagination_item pagination_item--${this.#variant} bgc-${this.#color} br-${this.#color} pagination_item--${this.#size}`;
+    $paginationItemToPreviousPage.className = `pagination_item pagination_item--${this.#variant} bgc-${this.#color} br-${this.#color} pagination_item--${this.#size} pagination_item--disabled`;
 
     $paginationItemToPreviousPage.setAttribute('id', 'pagination_previous_page');
+    $paginationItemToPreviousPage.setAttribute('disabled', 'disabled');
 
     const $iconToPreviousPage = new Icon({
       iconName: 'arrow-left',
