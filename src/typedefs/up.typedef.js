@@ -112,9 +112,10 @@
 /**
 * @typedef {{
 *   count: Number,
-*   variant: 'text' | 'text-circle' | 'contained' | 'contained-circle' | 'outlined' | 'outlined-circle' | null ?,
+*   variant: 'text' | 'text-circle' | 'contained' | 'contained-circle' | 'outlined' |    'outlined-circle' | null ?,
 *   color: ColorDef | null ?,
 *   size: 'small' | 'large' | null ?,
+*   handlePageClick: Function ?,
 * }} PaginationDef
 */
 

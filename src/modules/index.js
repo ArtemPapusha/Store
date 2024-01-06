@@ -9,7 +9,7 @@ const productAPI = new ProductAPI();
 
 function listProductsLoader(show) {
 
-  show ? listCards.addSkeletonCards(12) : listCards.removeSkeletonCards();
+  show ? listCards.addSkeletonCards(3) && listCards.paginationDisabled() : listCards.removeSkeletonCards() && listCards.endPaginationDisabled();
   
 }
 
@@ -19,19 +19,29 @@ function addCards(data) {
     });
 }
 
+async function fetchCards(page) {
 
-
-async function fetchCards() {
-
-  await productAPI.getProducts(listProductsLoader, addCards);
+  listCards.clearCards();
+  listCards.removeSkeletonCards();
+ 
+  await productAPI.getProducts(listProductsLoader, addCards, page);
 
 }
 
 listCards.render();
 
-listCards.addPagination();
+fetchCards(1);
 
-fetchCards();
+const totalPageCount = await productAPI.getLastPage();
+
+listCards.addPagination({
+  count: totalPageCount,
+  variant: 'outlined',
+  color: 'black',
+  size: 'medium',
+  handlePageClick: (page) => fetchCards(page)
+});
+
 
 
 

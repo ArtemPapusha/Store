@@ -48,7 +48,6 @@
       "image": "https://drive.google.com/uc?id=1pu_x-sr_NnOZWjKbUt1F4u2mX0j5s3NH",
       "description": "Intel Core i5-10400F (2.9 — 4.3 ГГц) / RAM 16 ГБ / HDD 1 ТБ + SSD 256 ГБ / nVidia GeForce GTX 1650 Super, 4 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС",
       "price": 500
-
     },
     {
       "id": 7,
@@ -97,6 +96,30 @@
       "image": "https://drive.google.com/uc?id=1SVQMYJknaM9rFpaI9iHT6aG5PV00Wpqi",
       "description": "AMD Ryzen Zen 2 8х3.5 GHz, 16 ГБ GDDR5, AMD Radeon RDNA 2 2.23 GHz 10.3 TFLOPS, Підтримка технологій 8K та HDR, Прискорення трасування променів",
       "price": 1000
+    },
+    {
+      "id": 13,
+      "name": "PC",
+      "title": "Компю'тер Lenovo IdeaCentre G5 Gaming 14IOB6",
+      "image": "https://drive.google.com/uc?id=1pu_x-sr_NnOZWjKbUt1F4u2mX0j5s3NH",
+      "description": "Intel Core i5-10400F (2.9 — 4.3 ГГц) / RAM 16 ГБ / HDD 1 ТБ + SSD 256 ГБ / nVidia GeForce GTX 1650 Super, 4 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС",
+      "price": 500
+    },
+    {
+      "id": 14,
+      "name": "PC",
+      "title": "Компю'тер Lenovo IdeaCentre G5 Gaming 14IOB6",
+      "image": "https://drive.google.com/uc?id=1pu_x-sr_NnOZWjKbUt1F4u2mX0j5s3NH",
+      "description": "Intel Core i5-10400F (2.9 — 4.3 ГГц) / RAM 16 ГБ / HDD 1 ТБ + SSD 256 ГБ / nVidia GeForce GTX 1650 Super, 4 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС",
+      "price": 500
+    },
+    {
+      "id": 15,
+      "name": "laptop",
+      "title": "Ноутбук ASUS ROG Strix G17 2023 G713PI-HX049",
+      "image": "https://drive.google.com/uc?id=1tTWV-cobjOgF1bNj5yLoZJeDyqiRZp4t",
+      "description": "Екран 17.3\" IPS (1920x1080) Full HD 144 Гц, матовий / AMD Ryzen 9 7845HX (3.0 - 5.2 ГГц) / RAM 16 ГБ / SSD 1 ТБ / nVidia GeForce RTX 4070, 8 ГБ / без ОД / LAN / Wi-Fi / Bluetooth / без ОС / 2.8 кг / сірий",
+      "price": 2000
     }
   ]
   

@@ -71,4 +71,31 @@
     line-height: 0.8;
     padding: 12px;
   }
+
+  &--active {
+    background-color: $secondary-light;
+  }
+
+  &--disabled {
+    color: $secondary-light;
+    border: 1px solid $secondary-light;
+    background-color: $white;
+    cursor: none;
+    box-shadow: none;
+  
+    &:hover,
+    &:active,
+    &:focus{
+      color: $secondary-light;
+      border: 1px solid $secondary-light;
+      background-color: $white;
+      cursor: not-allowed;;
+      box-shadow: none;
+      transform: none;
+    }
+  
+    .icon{
+      color: $secondary-light
+    }
+  }
 }
