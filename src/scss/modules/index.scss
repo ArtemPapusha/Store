@@ -1,14 +1,17 @@
 @import '~/utils/colors';
-@import '~/utils/width';
+@import '~/utils/sizes';
 @import '~/utils/space';
 @import '~/utils/flex';
 @import '~/utils/typography';
 @import '~/utils/fonts';
 @import '~/utils/iconmoon';
-@import '~/components/loading';
+@import '~/components/pagination';
+@import '~/components/snackbar';
+@import '~/components/skeleton';
 @import '~/components/button';
 @import '~/components/cardProduct';
-@import '~/components/fieldCards';
+@import '~/components/list_products';
+
 
 
 

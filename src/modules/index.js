@@ -1,34 +1,65 @@
 import '~/modules/index.scss';
 
-import Loading from '@/components/Loading';
 import ListCards from '@/components/ListCards';
+import ProductAPI from '@/services/ProductAPI';
+import getAmountPage from '@/utils/getAmountPage';
+import ProductState from '@/states/ProductState'
+import Pagination from '@/decorator/PaginationProductDecorator';
 
 const listCards = new ListCards();
+const productAPI = new ProductAPI();
+const productState = new ProductState();
+const pagination = new Pagination({
+  amount: productState.state.pagination.amount,
+  active: productState.state.pagination.active,
+});
+
+productState.addObserver(pagination);
+
+function listProductsLoader(show) {
+
+  show ? listCards.addSkeletonCards(3) : listCards.removeSkeletonCards();
+  
+}
+
+pagination.setPageClick(page => {
+  productState.updatePagination(page)
+})
 
 function addCards(data) {
-    data.cards.forEach(card => {
+    data?.forEach(card => {
       listCards.addCard(card);
     });
-    listCards.render();
 }
 
-async function fetchCards() {
-  try {
-    listCards.$listCards.firstChild.style.display = 'flex';
+async function fetchCards(page) {
 
-    const response = await fetch('https://my-json-server.typicode.com/ArtemPapusha/store-back/db');
+  listCards.clearListCards();
+  listCards.removeSkeletonCards();
  
-    const data = await response.json();
+  await productAPI.getProducts(listProductsLoader, addCards, page);
 
-    addCards(data);
-
-  } catch (error) {
-
-    console.error('Fetch error ==> ', error);
-
-  } finally {
-    listCards.$listCards.firstChild.style.display = 'none';
-  }
 }
 
-fetchCards();
+listCards.render();
+
+fetchCards(1);
+
+
+
+document.body.appendChild(pagination.pagination);
+// listCards.addPagination({
+//   amount: 5,
+//   variant: 'text',
+//   color: 'black',
+//   handlePageClick
+// });
+
+
+
+
+
+
+
+
+
