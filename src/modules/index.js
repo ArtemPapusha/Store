@@ -1,17 +1,30 @@
 import '~/modules/index.scss';
 
 import ListCards from '@/components/ListCards';
-import ProductAPI from '@/services/PoductAPI';
+import ProductAPI from '@/services/ProductAPI';
+import getAmountPage from '@/utils/getAmountPage';
+import ProductState from '@/states/ProductState'
+import Pagination from '@/decorator/PaginationProductDecorator';
 
 const listCards = new ListCards();
 const productAPI = new ProductAPI();
+const productState = new ProductState();
+const pagination = new Pagination({
+  amount: productState.state.pagination.amount,
+  active: productState.state.pagination.active,
+});
 
+productState.addObserver(pagination);
 
 function listProductsLoader(show) {
 
-  show ? listCards.addSkeletonCards(3) && listCards.paginationDisabled() : listCards.removeSkeletonCards() && listCards.endPaginationDisabled();
+  show ? listCards.addSkeletonCards(3) : listCards.removeSkeletonCards();
   
 }
+
+pagination.setPageClick(page => {
+  productState.updatePagination(page)
+})
 
 function addCards(data) {
     data?.forEach(card => {
@@ -21,7 +34,7 @@ function addCards(data) {
 
 async function fetchCards(page) {
 
-  listCards.clearCards();
+  listCards.clearListCards();
   listCards.removeSkeletonCards();
  
   await productAPI.getProducts(listProductsLoader, addCards, page);
@@ -32,15 +45,20 @@ listCards.render();
 
 fetchCards(1);
 
-const totalPageCount = await productAPI.getLastPage();
 
-listCards.addPagination({
-  count: totalPageCount,
-  variant: 'outlined',
-  color: 'black',
-  size: 'medium',
-  handlePageClick: (page) => fetchCards(page)
-});
+
+document.body.appendChild(pagination.pagination);
+// listCards.addPagination({
+//   amount: 5,
+//   variant: 'text',
+//   color: 'black',
+//   handlePageClick
+// });
+
+
+
+
+
 
 
 

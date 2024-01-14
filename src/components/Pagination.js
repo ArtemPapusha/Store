@@ -1,23 +1,27 @@
 import Icon from './Icon';
 
 class Pagination {
-#currentPage = 1;
-#$paginationContainer;
-#count;
-#variant;
-#color;
-#size;
-#handlePageClick;
+  static DEFAULT_PAGE_COUNT = 5;
+
+  #$paginationContainer;
+  #amount;
+  #activePage;
+  #variant;
+  #color;
+  #textColor;
+  #size;
+  #handlePageClick;
 
    /**
    * @param { PaginationDef } args
    */
-  constructor({ count, variant = 'outlined', color, size, handlePageClick }) {
-    this.#count = count;
+  constructor({ amount, active, variant = 'text', color, textColor = 'black', size }) {
+    this.#amount = amount;
+    this.#activePage = active;
     this.#variant = variant;
     this.#color = color;
+    this.#textColor = textColor;
     this.#size = size;
-    this.#handlePageClick = handlePageClick;
 
     this.buildPagination();
   }
@@ -26,173 +30,260 @@ class Pagination {
     return this.#$paginationContainer;
   }
 
-  handlePageClick = (page) => {
-    this.#currentPage = page;
+  get activePage() {
+    return this.#activePage;
+  }
+  
+  set activePage(page) {
+    this.#activePage = page;
+  }
 
-    const $paginationItems = this.#$paginationContainer.querySelectorAll('.pagination_item');
+  setActivePage(page) {
+    this.activePage = page;
 
-    const $clickedPaginationItem = this.#$paginationContainer.querySelector(`#page_${page}`);
+    this.buildPagination();
+  }
 
-    $paginationItems.forEach(item => {
-        item.classList.remove('pagination_item--active');
-    });
+  setPageClick = (handlePageClick) => {
+    this.#handlePageClick = handlePageClick;
+  }
 
-    $clickedPaginationItem.classList.add('pagination_item--active');
+  handleChangeActivePage = (page) => {
+    this.setActivePage(page);
+  }
+  
+  handlePageClick = (page)  => {
+    if (this.#handlePageClick) {
+      this.#handlePageClick(page);
+    }
+  };
+
+  #preBuildingPagination = () => {
+    const items = [];
+
+    items[0] =  {
+      type: 'first',
+      isDisabled: this.#activePage === 1,
+    };
+    items[1] =  {
+      type: 'arrow-left',
+      isDisabled: this.#activePage === 1,
+    };
+
+    if (this.#amount > Pagination.DEFAULT_PAGE_COUNT && this.#activePage > Pagination.DEFAULT_PAGE_COUNT) {
+      items[(items.length - 1) + 1] =  {
+          type: 'dots-left',
+          isDisabled: true,
+      };
+    }
+
+    if (this.#amount <= Pagination.DEFAULT_PAGE_COUNT) {
+      for (let i = 1; i < this.#amount + 1; i++) {
+          items[(items.length - 1) + 1] =  {
+              type: 'item',
+              value: i,
+              isActive: this.#activePage === i,
+          };
+      }
+    }
+
+    if (this.#amount > Pagination.DEFAULT_PAGE_COUNT && this.#activePage <= Pagination.DEFAULT_PAGE_COUNT) {
+      for (let i = 1; i < Pagination.DEFAULT_PAGE_COUNT + 1; i++) {
+          items[(items.length - 1) + 1] =  {
+              type: 'item',
+              value: i,
+              isActive: this.#activePage === i,
+          };
+      }
+    }
+
+    if (
+      this.#amount > Pagination.DEFAULT_PAGE_COUNT
+      && this.#activePage > Pagination.DEFAULT_PAGE_COUNT
+      && this.#activePage >= (this.#amount - Pagination.DEFAULT_PAGE_COUNT)
+      ) {
+      for (
+          let i = this.#amount - Pagination.DEFAULT_PAGE_COUNT;
+          i < this.#amount + 1;
+          i++
+      ) {
+          items[(items.length - 1) + 1] =  {
+              type: 'item',
+              value: i,
+              isActive: this.#activePage === i,
+          };
+      }
+    }
+
+    if (
+      this.#amount > Pagination.DEFAULT_PAGE_COUNT
+      && this.#activePage > Pagination.DEFAULT_PAGE_COUNT
+      && this.#activePage < (this.#amount - Pagination.DEFAULT_PAGE_COUNT)
+      ) {
+      for (
+          let i = this.#activePage - Math.trunc(Pagination.DEFAULT_PAGE_COUNT / 2);
+          i < this.#activePage + Math.trunc(Pagination.DEFAULT_PAGE_COUNT / 2) + 1;
+          i++
+      ) {
+          items[(items.length - 1) + 1] = {
+              type: 'item',
+              value: i,
+              isActive: this.#activePage === i,
+          };
+      }
+    }
    
-    this.#handlePageClick(page);
-};
+    if (this.#amount > Pagination.DEFAULT_PAGE_COUNT && this.#activePage < (this.#amount - Pagination.DEFAULT_PAGE_COUNT)) {
+      items[(items.length - 1) + 1] = {
+          type: 'dots-right',
+          isDisabled: true,
+      };
+    }
+
+    items[(items.length - 1) + 1] =  {
+        type: 'arrow-right',
+        isDisabled: this.#activePage === this.#amount,
+    };
+
+    items[(items.length - 1) + 1] =  {
+      type: 'last',
+      isDisabled: this.#activePage === this.#amount,
+    };
+    
+    return items;
+  }
+
+  buildButtonElement = (icon) => {
+    const $buttonElement = document.createElement('button');
+
+    $buttonElement.className = `pagination_item pagination_item--${this.#variant} bgc-${this.#color} br-${this.#color} text-${this.#textColor} pagination_item--${this.#size}`;
+
+    const $iconPagination = new Icon({
+      iconName: icon,
+      size: '14',
+      color: this.#textColor,
+      className: ''
+    })
+
+    $buttonElement.appendChild($iconPagination.$icon);
+
+    return $buttonElement;
+  }
 
   buildPagination = () => {
-    const $paginationContainer = document.createElement('ul');
+    const $paginationContainer = this.#$paginationContainer || document.createElement('ul');
+    $paginationContainer.innerHTML = '';
     
     $paginationContainer.className = `pagination_container d-flex just-content-center align-items-center gap-1`;
-    
-    $paginationContainer.appendChild(this.buildButtonFirstPage());
-    $paginationContainer.appendChild(this.buildButtonPreviousPage());
 
-    for (let i = 0; i < this.#count; i++) {
+    this.#preBuildingPagination().forEach(item =>{
+      const $item = document.createElement('li');
 
-      const $paginationItemWrapper = document.createElement('li');
+      if (item.type === 'first') {
+        $item.appendChild(this.buildButtonFirstPage())
+      }
 
-      const $paginationItem = document.createElement('button');
+      if (item.type === 'arrow-left') {
+        $item.appendChild(this.buildButtonPreviousPage())
+      }
 
-      $paginationItem.className = `pagination_item pagination_item--${this.#variant} bgc-${this.#color} br-${this.#color} pagination_item--${this.#size}`;
+      if (item.type === 'arrow-right') {
+          $item.appendChild(this.buildButtonNextPage())
+      }
 
-      $paginationItem.setAttribute('id', 'page_' + (i+1).toString());
+      if (item.type === 'last') {
+        $item.appendChild(this.buildButtonLastPage())
+      }
 
-      $paginationItem.innerText = (i+1).toString();
+      if (item.type === 'dots-left') {
+          $item.innerText = '...';
+      }
 
-      $paginationItem.addEventListener('click', () => this.handlePageClick(i + 1));
+      if (item.type === 'dots-right') {
+          $item.innerText = '...';
+      }
 
-      $paginationItemWrapper.appendChild($paginationItem);
+      if (item.type === 'item') {
+        const $paginationItem = this.buildButtonElement();
 
-      $paginationContainer.appendChild($paginationItemWrapper);
-    }
+        $paginationItem.setAttribute('id', `page_${item.value}`);
 
-    $paginationContainer.appendChild(this.buildButtonNextPage());
-    $paginationContainer.appendChild(this.buildButtonLastPage());
+        $paginationItem.addEventListener('click', () => this.handlePageClick(item.value));
 
-    const $firstPaginationItem = $paginationContainer.querySelector(`#page_1`);
+        $paginationItem.innerText = item.value;
 
-    if ($firstPaginationItem) {
-        $firstPaginationItem.classList.add('pagination_item--active');
-    }
+          $item.appendChild($paginationItem);
+      }
+
+      const $paginationItem = $item.querySelector('.pagination_item')
+      if (item.type === 'item' && item.isActive) {
+        if ($paginationItem) {
+          $paginationItem.setAttribute('active', 'active')
+          $paginationItem.classList.add('pagination_item--active')
+        }
+      }
+
+      if (item.type !== 'item' && item.isDisabled) {
+        if ($paginationItem) {
+          $paginationItem.setAttribute('disabled', 'disabled');
+          $paginationItem.classList.add('pagination_item--disabled')
+        }
+      }
+
+      $paginationContainer.appendChild($item)
+    })
 
     this.#$paginationContainer = $paginationContainer;
   }
 
   buildButtonFirstPage = () => {
-    const $paginationItemWrapperToFirstPage = document.createElement('li');
-
-    const $paginationItemToFirstPage = document.createElement('button');
-
-    $paginationItemToFirstPage.className = `pagination_item pagination_item--${this.#variant} bgc-${this.#color} br-${this.#color} pagination_item--${this.#size} pagination_item--disabled`;
+    const $paginationItemToFirstPage = this.buildButtonElement('first');
 
     $paginationItemToFirstPage.setAttribute('id', 'pagination_first_page');
-    $paginationItemToFirstPage.setAttribute('disabled', 'disabled');
-
-    const $iconToFirstPage = new Icon({
-      iconName: 'first',
-      size: '14',
-      color: 'black',
-      className: ''
-    })
 
     $paginationItemToFirstPage.addEventListener('click', () => this.handlePageClick(1))
 
-    $paginationItemToFirstPage.appendChild($iconToFirstPage.$icon);
-    $paginationItemWrapperToFirstPage.appendChild($paginationItemToFirstPage);
-
-    return $paginationItemWrapperToFirstPage;
+    return $paginationItemToFirstPage;
   }
 
   buildButtonPreviousPage = () => {
-    const $paginationItemWrapperToPreviousPage = document.createElement('li');
-
-    const $paginationItemToPreviousPage = document.createElement('button');
-
-    $paginationItemToPreviousPage.className = `pagination_item pagination_item--${this.#variant} bgc-${this.#color} br-${this.#color} pagination_item--${this.#size} pagination_item--disabled`;
+    const $paginationItemToPreviousPage = this.buildButtonElement('arrow-left');
 
     $paginationItemToPreviousPage.setAttribute('id', 'pagination_previous_page');
-    $paginationItemToPreviousPage.setAttribute('disabled', 'disabled');
-
-    const $iconToPreviousPage = new Icon({
-      iconName: 'arrow-left',
-      size: '14',
-      color: 'black',
-      className: ''
-    })
 
     $paginationItemToPreviousPage.addEventListener('click', () => {
-      const currentPage = this.getCurrentPage();
-      if (currentPage > 1) {
-          this.handlePageClick(currentPage - 1);
+    
+      if (this.#activePage > 1) {
+          this.handlePageClick(this.#activePage - 1);
       }
-  });
+    });
 
-    $paginationItemToPreviousPage.appendChild($iconToPreviousPage.$icon);
-    $paginationItemWrapperToPreviousPage.appendChild($paginationItemToPreviousPage);
-
-    return $paginationItemWrapperToPreviousPage;
+    return $paginationItemToPreviousPage;
   }
 
   buildButtonNextPage = () => {
-    const $paginationItemWrapperToNextPage = document.createElement('li');
-
-    const $paginationItemToNextPage = document.createElement('button');
-
-    $paginationItemToNextPage.className = `pagination_item pagination_item--${this.#variant} bgc-${this.#color} br-${this.#color} pagination_item--${this.#size}`;
+    const $paginationItemToNextPage = this.buildButtonElement('arrow-right');
 
     $paginationItemToNextPage.setAttribute('id', 'pagination_next_page');
 
-    const $iconToNextPage = new Icon({
-      iconName: 'arrow-right',
-      size: '14',
-      color: 'black',
-      className: ''
-    })
-
     $paginationItemToNextPage.addEventListener('click', () => {
 
-      const currentPage = this.getCurrentPage();
-
-      if (currentPage < this.#count) {
-          this.handlePageClick(currentPage + 1);
+      if (this.#activePage < this.#amount) {
+          this.handlePageClick(this.#activePage + 1);
       }
   });
 
-    $paginationItemToNextPage.appendChild($iconToNextPage.$icon);
-    $paginationItemWrapperToNextPage.appendChild($paginationItemToNextPage);
-
-    return $paginationItemWrapperToNextPage;
+    return $paginationItemToNextPage;
   }
 
   buildButtonLastPage = () => {
-    const $paginationItemWrapperToLastPage = document.createElement('li');
-
-    const $paginationItemToLastPage = document.createElement('button');
-
-    $paginationItemToLastPage.className = `pagination_item pagination_item--${this.#variant} bgc-${this.#color} br-${this.#color} pagination_item--${this.#size}`;
+    const $paginationItemToLastPage = this.buildButtonElement('last');
 
     $paginationItemToLastPage.setAttribute('id', 'pagination_last_page');
 
-    const $iconToLastPage = new Icon({
-      iconName: 'last',
-      size: '14',
-      color: 'black',
-      className: ''
-    })
+    $paginationItemToLastPage.addEventListener('click', () => this.handlePageClick(this.#amount));
 
-    $paginationItemToLastPage.addEventListener('click', () => this.handlePageClick(this.#count));
-
-    $paginationItemToLastPage.appendChild($iconToLastPage.$icon);
-    $paginationItemWrapperToLastPage.appendChild($paginationItemToLastPage);
-
-    return $paginationItemWrapperToLastPage
-  }
-
-  getCurrentPage = () => {
-    return this.#currentPage;
+    return $paginationItemToLastPage
   }
 
 }

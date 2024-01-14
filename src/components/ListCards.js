@@ -1,7 +1,8 @@
 import Skeleton from '@/components/Skeleton';
 import CardProduct from "@/components/CardProduct";
 import Pagination from "@/components/Pagination";
-import ProductAPI from '@/services/PoductAPI';
+import ProductAPI from '@/services/ProductAPI';
+import getAmountPage from '@/utils/getAmountPage';
 
 class ListCards {
   $listCards;
@@ -29,7 +30,7 @@ class ListCards {
     return this;
   }
 
-  clearCards = () => {
+  clearListCards = () => {
     this.$listCards.innerHTML = '';
   }
 
@@ -38,56 +39,6 @@ class ListCards {
 
     document.body.appendChild($pagination.pagination);
 
-    return this;
-  }
-
-  paginationDisabled = () => {
-    const $paginationItems = document.querySelectorAll('.pagination_item');
-
-    $paginationItems.forEach(item => {
-
-      item.setAttribute('disabled', 'disabled');
-
-      item.classList.add('pagination_item--disabled');
-    });
-
-    return this;
-  }
-
-  endPaginationDisabled = async () => {
-    const $paginationItems = document.querySelectorAll('.pagination_item');
-
-    $paginationItems.forEach(item => {
-
-      item.removeAttribute('disabled')
-
-      item.classList.remove('pagination_item--disabled');
-    });
-
-    const firstPage = document.querySelector('#page_1');
-    const paginationFirstPage = document.getElementById('pagination_first_page');
-    const paginationPreviousPage = document.getElementById('pagination_previous_page');
-    
-    if (firstPage && firstPage.classList.contains('pagination_item--active')) {
-      paginationFirstPage.setAttribute('disabled', 'disabled');
-      paginationFirstPage.classList.add('pagination_item--disabled');
-      paginationPreviousPage.setAttribute('disabled', 'disabled');
-      paginationPreviousPage.classList.add('pagination_item--disabled');
-    }
-
-    const productAPI = new ProductAPI();
-    const totalPageCount = await productAPI.getLastPage();
-    const lastPage = document.querySelector(`#page_${totalPageCount}`);
-    const paginationLastPage = document.getElementById('pagination_last_page');
-    const paginationNextPage = document.getElementById('pagination_next_page');
-        
-    if (lastPage && lastPage.classList.contains('pagination_item--active')) {
-      paginationLastPage.setAttribute('disabled', 'disabled');
-      paginationLastPage.classList.add('pagination_item--disabled');
-      paginationNextPage.setAttribute('disabled', 'disabled');
-      paginationNextPage.classList.add('pagination_item--disabled');
-    }
-    
     return this;
   }
 
@@ -115,7 +66,7 @@ class ListCards {
     return this;
   };
 
-  buildListCards = async () => {
+  buildListCards = () => {
     const $listCards = document.createElement('div');
     
     $listCards.className = 'list-products d-flex flex-direction-row just-content-center flex-wrap-wrap';

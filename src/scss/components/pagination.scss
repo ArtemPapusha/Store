@@ -6,7 +6,6 @@
 .pagination_item {
   min-width: 30px;
   box-sizing: border-box;
-  color: $black;
   padding: 8px;
 
   &:hover {
@@ -77,8 +76,8 @@
   }
 
   &--disabled {
+    border: none;
     color: $secondary-light;
-    border: 1px solid $secondary-light;
     background-color: $white;
     cursor: none;
     box-shadow: none;
@@ -87,7 +86,6 @@
     &:active,
     &:focus{
       color: $secondary-light;
-      border: 1px solid $secondary-light;
       background-color: $white;
       cursor: not-allowed;;
       box-shadow: none;
