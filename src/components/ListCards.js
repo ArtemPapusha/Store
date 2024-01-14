@@ -1,6 +1,8 @@
 import Skeleton from '@/components/Skeleton';
 import CardProduct from "@/components/CardProduct";
 import Pagination from "@/components/Pagination";
+import ProductAPI from '@/services/ProductAPI';
+import getAmountPage from '@/utils/getAmountPage';
 
 class ListCards {
   $listCards;
@@ -28,13 +30,12 @@ class ListCards {
     return this;
   }
 
-  addPagination = () => {
-    const $pagination = new Pagination({
-      count: 4,
-      variant: 'outlined',
-      color: 'black',
-      size: 'medium'
-    })
+  clearListCards = () => {
+    this.$listCards.innerHTML = '';
+  }
+
+  addPagination = (pagination) => {
+    const $pagination = new Pagination(pagination)
 
     document.body.appendChild($pagination.pagination);
 
@@ -44,12 +45,12 @@ class ListCards {
   addSkeletonCards = (count) => {
 
   for (let i = 0; i < count; i++) {
+
     const $skeleton = new Skeleton();
 
-    this.$listCards.appendChild($skeleton.loadingSkeleton);
-    
+    this.$listCards.appendChild($skeleton.loadingSkeleton); 
   }
-  
+
     return this;
   }
 
@@ -58,16 +59,17 @@ class ListCards {
     const skeletonElements = this.$listCards.querySelectorAll('.card_wrapper_skeleton');
     
     skeletonElements.forEach(element => {
+
       element.remove();
     });
 
     return this;
   };
 
-  buildListCards = async () => {
+  buildListCards = () => {
     const $listCards = document.createElement('div');
     
-    $listCards.className = 'list-products d-flex flex-direction-row just-content-center flex-wrap-wrap'
+    $listCards.className = 'list-products d-flex flex-direction-row just-content-center flex-wrap-wrap';
    
      this.$listCards = $listCards;
   }

@@ -111,10 +111,12 @@
 
 /**
 * @typedef {{
-*   count: Number,
-*   variant: 'text' | 'text-circle' | 'contained' | 'contained-circle' | 'outlined' | 'outlined-circle' | null ?,
+*   amount: Number,
+*   active: Number,
+*   variant: 'text' | 'text-circle' | 'contained' | 'contained-circle' | 'outlined' |    'outlined-circle' | null ?,
 *   color: ColorDef | null ?,
 *   size: 'small' | 'large' | null ?,
+*   handlePageClick: Function ?,
 * }} PaginationDef
 */
 
@@ -130,6 +132,8 @@
   *   button: ButtonDef | null ?,
   * }} SnackbarDef
   */
+
+
 
 
 
