@@ -1,10 +1,12 @@
 import Icon from './Icon';
+import Skeleton from '@/components/Skeleton';
 
 class Pagination {
   static DEFAULT_PAGE_COUNT = 5;
+  static PAGE_LIMIT_ELEMENTS = 10;
 
   #$paginationContainer;
-  #amount;
+  #elementsAmount;
   #activePage;
   #variant;
   #color;
@@ -15,8 +17,8 @@ class Pagination {
    /**
    * @param { PaginationDef } args
    */
-  constructor({ amount, active, variant = 'text', color, textColor = 'black', size }) {
-    this.#amount = amount;
+  constructor({ elementsAmount, active, variant = 'text', color, textColor = 'black', size }) {
+    this.#elementsAmount = elementsAmount;
     this.#activePage = active;
     this.#variant = variant;
     this.#color = color;
@@ -29,33 +31,48 @@ class Pagination {
   get pagination() {
     return this.#$paginationContainer;
   }
-
-  get activePage() {
-    return this.#activePage;
-  }
   
   set activePage(page) {
     this.#activePage = page;
   }
 
-  setActivePage(page) {
-    this.activePage = page;
-
-    this.buildPagination();
+  set elementsAmountPage(elementsAmount){
+    this.#elementsAmount = elementsAmount;
   }
 
   setPageClick = (handlePageClick) => {
     this.#handlePageClick = handlePageClick;
   }
 
-  handleChangeActivePage = (page) => {
-    this.setActivePage(page);
+  getPagesElementsAmount = () => {
+    const pages = Math.round(this.#elementsAmount / Pagination.PAGE_LIMIT_ELEMENTS)
+    return pages;
   }
+
+  handleChangeActivePage = (page, elementsAmount) => {
+    this.activePage = page;
+    this.elementsAmountPage = elementsAmount
+
+    this.buildPagination();
+  }
+
+  setDisabled = () => {
+    const $paginationItems = this.#$paginationContainer.querySelectorAll('.pagination_item');
   
+    if ($paginationItems.length > 0) {
+      $paginationItems.forEach(($paginationItem) => {
+        $paginationItem.setAttribute('disabled', 'disabled');
+        $paginationItem.classList.add('pagination_item--disabled');
+      });
+    }
+  };
+
   handlePageClick = (page)  => {
     if (this.#handlePageClick) {
       this.#handlePageClick(page);
     }
+
+  this.setDisabled();
   };
 
   #preBuildingPagination = () => {
@@ -70,15 +87,15 @@ class Pagination {
       isDisabled: this.#activePage === 1,
     };
 
-    if (this.#amount > Pagination.DEFAULT_PAGE_COUNT && this.#activePage > Pagination.DEFAULT_PAGE_COUNT) {
+    if (this.getPagesElementsAmount() > Pagination.DEFAULT_PAGE_COUNT && this.#activePage > Pagination.DEFAULT_PAGE_COUNT) {
       items[(items.length - 1) + 1] =  {
           type: 'dots-left',
           isDisabled: true,
       };
     }
 
-    if (this.#amount <= Pagination.DEFAULT_PAGE_COUNT) {
-      for (let i = 1; i < this.#amount + 1; i++) {
+    if (this.getPagesElementsAmount() <= Pagination.DEFAULT_PAGE_COUNT) {
+      for (let i = 1; i < this.getPagesElementsAmount() + 1; i++) {
           items[(items.length - 1) + 1] =  {
               type: 'item',
               value: i,
@@ -87,7 +104,7 @@ class Pagination {
       }
     }
 
-    if (this.#amount > Pagination.DEFAULT_PAGE_COUNT && this.#activePage <= Pagination.DEFAULT_PAGE_COUNT) {
+    if (this.getPagesElementsAmount() > Pagination.DEFAULT_PAGE_COUNT && this.#activePage <= Pagination.DEFAULT_PAGE_COUNT) {
       for (let i = 1; i < Pagination.DEFAULT_PAGE_COUNT + 1; i++) {
           items[(items.length - 1) + 1] =  {
               type: 'item',
@@ -98,13 +115,13 @@ class Pagination {
     }
 
     if (
-      this.#amount > Pagination.DEFAULT_PAGE_COUNT
+      this.getPagesElementsAmount() > Pagination.DEFAULT_PAGE_COUNT
       && this.#activePage > Pagination.DEFAULT_PAGE_COUNT
-      && this.#activePage >= (this.#amount - Pagination.DEFAULT_PAGE_COUNT)
+      && this.#activePage >= (this.getPagesElementsAmount() - Pagination.DEFAULT_PAGE_COUNT)
       ) {
       for (
-          let i = this.#amount - Pagination.DEFAULT_PAGE_COUNT;
-          i < this.#amount + 1;
+          let i = this.getPagesElementsAmount() - Pagination.DEFAULT_PAGE_COUNT;
+          i < this.getPagesElementsAmount() + 1;
           i++
       ) {
           items[(items.length - 1) + 1] =  {
@@ -116,9 +133,9 @@ class Pagination {
     }
 
     if (
-      this.#amount > Pagination.DEFAULT_PAGE_COUNT
+      this.getPagesElementsAmount() > Pagination.DEFAULT_PAGE_COUNT
       && this.#activePage > Pagination.DEFAULT_PAGE_COUNT
-      && this.#activePage < (this.#amount - Pagination.DEFAULT_PAGE_COUNT)
+      && this.#activePage < (this.getPagesElementsAmount() - Pagination.DEFAULT_PAGE_COUNT)
       ) {
       for (
           let i = this.#activePage - Math.trunc(Pagination.DEFAULT_PAGE_COUNT / 2);
@@ -133,7 +150,7 @@ class Pagination {
       }
     }
    
-    if (this.#amount > Pagination.DEFAULT_PAGE_COUNT && this.#activePage < (this.#amount - Pagination.DEFAULT_PAGE_COUNT)) {
+    if (this.getPagesElementsAmount() > Pagination.DEFAULT_PAGE_COUNT && this.#activePage < (this.getPagesElementsAmount() - Pagination.DEFAULT_PAGE_COUNT)) {
       items[(items.length - 1) + 1] = {
           type: 'dots-right',
           isDisabled: true,
@@ -142,12 +159,12 @@ class Pagination {
 
     items[(items.length - 1) + 1] =  {
         type: 'arrow-right',
-        isDisabled: this.#activePage === this.#amount,
+        isDisabled: this.#activePage === this.getPagesElementsAmount(),
     };
 
     items[(items.length - 1) + 1] =  {
       type: 'last',
-      isDisabled: this.#activePage === this.#amount,
+      isDisabled: this.#activePage === this.getPagesElementsAmount(),
     };
     
     return items;
@@ -170,12 +187,23 @@ class Pagination {
     return $buttonElement;
   }
 
+  buildPaginationSkeleton = () => {
+    new Skeleton().buildskeletonPagination();
+  }
+
+  removePaginationSkeleton = () =>{
+    const $skeletonPagination = document.querySelector('.pagination_container_skelton')
+    if ($skeletonPagination) {
+      $skeletonPagination.remove()
+    }
+  }
+
   buildPagination = () => {
     const $paginationContainer = this.#$paginationContainer || document.createElement('ul');
     $paginationContainer.innerHTML = '';
     
     $paginationContainer.className = `pagination_container d-flex just-content-center align-items-center gap-1`;
-
+   
     this.#preBuildingPagination().forEach(item =>{
       const $item = document.createElement('li');
 
@@ -268,7 +296,7 @@ class Pagination {
 
     $paginationItemToNextPage.addEventListener('click', () => {
 
-      if (this.#activePage < this.#amount) {
+      if (this.#activePage < this.getPagesElementsAmount()) {
           this.handlePageClick(this.#activePage + 1);
       }
   });
@@ -281,7 +309,7 @@ class Pagination {
 
     $paginationItemToLastPage.setAttribute('id', 'pagination_last_page');
 
-    $paginationItemToLastPage.addEventListener('click', () => this.handlePageClick(this.#amount));
+    $paginationItemToLastPage.addEventListener('click', () => this.handlePageClick(this.getPagesElementsAmount()));
 
     return $paginationItemToLastPage
   }

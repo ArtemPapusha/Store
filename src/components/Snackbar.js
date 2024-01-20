@@ -89,16 +89,6 @@ class Snackbar {
 
   }
 
-  addSnackbar = (snackbar) => {
-    const $snackbar = new Snackbar(snackbar);
-
-    if (document.body.contains(Snackbar.#$snackbarsContainer)) {
-      Snackbar.#$snackbarsContainer.appendChild($snackbar.snackbar);
-    }
-
-    return this;
-  }
-
   removeSnackbar = () => {
 
     if (Snackbar.#$snackbarsContainer.contains(this.#$snackbar)) {

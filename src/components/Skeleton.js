@@ -1,3 +1,6 @@
+import ListCards from "@/components/ListCards";
+
+
 class Skeleton {
   
 $cardWrapperSkeleton = null;
@@ -6,7 +9,6 @@ $cardWrapperSkeleton = null;
 
     this.$cardWrapperSkeleton = null;
 
-    this.buildSkeletonProduct();
   }
 
   get loadingSkeleton () {
@@ -40,6 +42,10 @@ $cardWrapperSkeleton = null;
     $cardWrapperSkeleton.appendChild($footerCardProductSkeleton);
 
     this.$cardWrapperSkeleton = $cardWrapperSkeleton;
+
+    document.body.appendChild(this.$cardWrapperSkeleton);
+
+    return this;
   }
 
   buildSkeletonTitle = () => {
@@ -72,6 +78,22 @@ $cardWrapperSkeleton = null;
     $buttonSkeleton.className = `button_skeleton skeleton`;
 
     return $buttonSkeleton;
+  }
+
+  buildskeletonPagination = () =>{
+    const $skeletonPagiantionWrapper = document.createElement('ul');
+    $skeletonPagiantionWrapper.className = 'pagination_container_skelton pagination_container d-flex just-content-center align-items-center gap-2'
+
+    for (let i = 0; i < 7; i++) {
+      const $skeletonPagiantionElement = document.createElement('li');
+      $skeletonPagiantionElement.className = 'pagination_skeleton skeleton';
+
+      $skeletonPagiantionWrapper.appendChild($skeletonPagiantionElement);
+    }
+
+    document.body.appendChild($skeletonPagiantionWrapper);
+
+    return this;
   }
 }
 
