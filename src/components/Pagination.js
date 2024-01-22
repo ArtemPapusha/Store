@@ -45,8 +45,7 @@ class Pagination {
   }
 
   getPagesElementsAmount = () => {
-    const pages = Math.round(this.#elementsAmount / Pagination.PAGE_LIMIT_ELEMENTS)
-    return pages;
+    return Math.round(this.#elementsAmount / Pagination.PAGE_LIMIT_ELEMENTS)
   }
 
   handleChangeActivePage = (page, elementsAmount) => {
@@ -188,7 +187,7 @@ class Pagination {
   }
 
   buildPaginationSkeleton = () => {
-    new Skeleton().buildskeletonPagination();
+    new Skeleton().buildSkeletonPagination();
   }
 
   removePaginationSkeleton = () =>{

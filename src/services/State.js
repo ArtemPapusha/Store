@@ -5,11 +5,11 @@ import Observer from "@/services/Observer";
  */
 class State extends Observer {
 
-  /** @type EventType */
+  /** @type String */
   static EVENT_TYPE_PRODUCT_LOADING = 'EVENT_TYPE_PRODUCT_LOADING';
-  /** @type EventType */
+  /** @type String */
   static EVENT_TYPE_UPDATE_PRODUCT = 'EVENT_TYPE_UPDATE_PRODUCT';
-  /** @type EventType */
+  /** @type String */
   static EVENT_TYPE_UPDATE_PAGINATION = 'EVENT_TYPE_UPDATE_PAGINATION';
 
   /** @type State */

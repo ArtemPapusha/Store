@@ -41,21 +41,6 @@ class PaginationProductDecorator extends Pagination {
       this.handleChangeActivePage(activePage, elementsAmount);
   
     }
-
-    // if (
-    //   eventType === ProductState.EVENT_TYPE_PRODUCT_LOADING 
-    //   && newState.isLoadingProduct
-    //   && !newState.isInitProduct
-    // ) {
-    //   console.log('isLoadingProduct => true', newState.isLoadingProduct);
-    // }
-    // if (
-    //   eventType === ProductState.EVENT_TYPE_PRODUCT_LOADING 
-    //   && !newState.isLoadingProduct
-    //   && newState.isInitProduct
-    // ) {
-    //   console.log('isLoadingProduct => false', newState.isLoadingProduct);
-    // }
   }
 
 }

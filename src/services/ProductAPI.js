@@ -20,7 +20,7 @@ class ProductAPI {
 
 
   /**
-   * @param { String } page
+   * @param { Number } page
    * @returns {Promise<void>}
    */
   getProducts = async (page) => {

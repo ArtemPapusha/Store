@@ -1,51 +1,37 @@
-import ListCards from "@/components/ListCards";
-
 
 class Skeleton {
   
-$cardWrapperSkeleton = null;
-
-  constructor() {
-
-    this.$cardWrapperSkeleton = null;
-
-  }
+$cardWrapperSkeleton;
 
   get loadingSkeleton () {
     return this.$cardWrapperSkeleton;
   }
 
-  buildSkeletonProduct = () => {
-    
-    const $cardWrapperSkeleton = document.createElement('div');
-
-    $cardWrapperSkeleton.className = `card_wrapper_skeleton d-flex just-content-flex-start flex-direction-column align-items-center align-self-flex-start wd-20 py-3 px-3 gap-10 my-3 mx-3`;
-
-    $cardWrapperSkeleton.appendChild(this.buildSkeletonTitle());
-   
-    $cardWrapperSkeleton.appendChild(this.buildSkeletonImage());
-
-    const $footerCardProductSkeleton = document.createElement('div');
-
-    $footerCardProductSkeleton.className = 'footer_card_product_skeleton d-flex just-content-space-between align-items-center gap-15'
-
-    const $priceSkeleton = document.createElement('div');
-
-    $priceSkeleton.className = `price_skeleton skeleton`;
-
-    $footerCardProductSkeleton.appendChild($priceSkeleton);
-
-    $footerCardProductSkeleton.appendChild(this.buildSkeletonButton());
-
-    $footerCardProductSkeleton.appendChild(this.buildSkeletonButton());
-    
-    $cardWrapperSkeleton.appendChild($footerCardProductSkeleton);
-
-    this.$cardWrapperSkeleton = $cardWrapperSkeleton;
-
-    document.body.appendChild(this.$cardWrapperSkeleton);
-
-    return this;
+  buildSkeletonProduct = (count) => {
+    const $skeletonContainer = document.createElement('div');
+    $skeletonContainer.className = `d-flex flex-direction-row just-content-center flex-wrap-wrap`;
+  
+    for (let i = 0; i < count; i++) {
+      const $cardWrapperSkeleton = document.createElement('div');
+      $cardWrapperSkeleton.className = `card_wrapper_skeleton d-flex just-content-flex-start flex-direction-column align-items-center align-self-flex-start wd-20 py-3 px-3 gap-10 my-3 mx-3`;
+  
+      $cardWrapperSkeleton.appendChild(this.buildSkeletonTitle());
+      $cardWrapperSkeleton.appendChild(this.buildSkeletonImage());
+  
+      const $footerCardProductSkeleton = document.createElement('div');
+      $footerCardProductSkeleton.className = 'footer_card_product_skeleton d-flex just-content-space-between align-items-center gap-15';
+  
+      const $priceSkeleton = document.createElement('div');
+      $priceSkeleton.className = `price_skeleton skeleton`;
+      $footerCardProductSkeleton.appendChild($priceSkeleton);
+      $footerCardProductSkeleton.appendChild(this.buildSkeletonButton());
+      $footerCardProductSkeleton.appendChild(this.buildSkeletonButton());
+  
+      $cardWrapperSkeleton.appendChild($footerCardProductSkeleton);
+      $skeletonContainer.appendChild($cardWrapperSkeleton);
+    }
+  
+    return $skeletonContainer;
   }
 
   buildSkeletonTitle = () => {
@@ -80,7 +66,7 @@ $cardWrapperSkeleton = null;
     return $buttonSkeleton;
   }
 
-  buildskeletonPagination = () =>{
+  buildSkeletonPagination = () =>{
     const $skeletonPagiantionWrapper = document.createElement('ul');
     $skeletonPagiantionWrapper.className = 'pagination_container_skelton pagination_container d-flex just-content-center align-items-center gap-2'
 
