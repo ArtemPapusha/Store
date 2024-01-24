@@ -1,11 +1,20 @@
 import Skeleton from '@/components/Skeleton';
 import CardProduct from "@/components/CardProduct";
-import Pagination from "@/components/Pagination";
-import ProductAPI from '@/services/ProductAPI';
-import getAmountPage from '@/utils/getAmountPage';
+import ProductState from "@/states/ProductState";
+
+
+
 
 class ListCards {
   $listCards;
+
+  eventTypes = [
+    ProductState.EVENT_TYPE_UPDATE_PRODUCT,
+    ProductState.EVENT_TYPE_PRODUCT_LOADING,
+    ProductState.EVENT_TYPE_UPDATE_INIT,
+  ];
+
+  displayName = 'ListCards';
 
   constructor() {
     this.buildListCards();
@@ -15,56 +24,37 @@ class ListCards {
     return this.$listCards;
   }
 
-  render = () => {
-    document.body.appendChild(this.$listCards);
-  }
-
- /**
-   * @param { CardDef } card
-  */
-  addCard = (card) => {
-    const $card = new CardProduct(card);
-
-    this.$listCards.appendChild($card.$cardWrapper);
-
-    return this;
-  }
-
-  clearListCards = () => {
+  productLoading = () => {
     this.$listCards.innerHTML = '';
+    const skeleton = new Skeleton();
+    const skeletonProduct = skeleton.buildSkeletonProduct(10)
+    this.$listCards.appendChild(skeletonProduct)
   }
 
-  addPagination = (pagination) => {
-    const $pagination = new Pagination(pagination)
-
-    document.body.appendChild($pagination.pagination);
-
-    return this;
-  }
-
-  addSkeletonCards = (count) => {
-
-  for (let i = 0; i < count; i++) {
-
-    const $skeleton = new Skeleton();
-
-    this.$listCards.appendChild($skeleton.loadingSkeleton); 
-  }
-
-    return this;
-  }
-
-  removeSkeletonCards = () => {
+  handleEvent = (newState, prevState, eventType) => {
    
-    const skeletonElements = this.$listCards.querySelectorAll('.card_wrapper_skeleton');
-    
-    skeletonElements.forEach(element => {
+    if (!newState.isInitProduct && newState.isLoadingProduct && !prevState.isLoadingProduct) {
+      this.productLoading();
+    }
 
-      element.remove();
-    });
+    if (
+      eventType === ProductState.EVENT_TYPE_UPDATE_PRODUCT &&
+      newState.isInitProduct ||
+      eventType === ProductState.EVENT_TYPE_UPDATE_INIT
+    ) {
+      console.log('ListCards => products', newState.product.length);
 
-    return this;
-  };
+      this.$listCards.innerHTML = '';
+
+      const productData = newState.product;
+
+      productData.forEach(product => {
+        const cardProduct = new CardProduct(product);
+        this.$listCards.appendChild(cardProduct.$cardWrapper);
+      })
+    }
+
+  }
 
   buildListCards = () => {
     const $listCards = document.createElement('div');
@@ -72,6 +62,8 @@ class ListCards {
     $listCards.className = 'list-products d-flex flex-direction-row just-content-center flex-wrap-wrap';
    
      this.$listCards = $listCards;
+
+     document.body.appendChild(this.$listCards);
   }
 }
 

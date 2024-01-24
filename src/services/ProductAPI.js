@@ -2,36 +2,56 @@ import { API_HOST } from '@/constans/api';
 import endpoint from '@/utils/endpoint'
 import { PRODUCTS_ROUTER, PRODUCT_ID_ROUTER, API_METHOD_GET, API_METHOD_POST } from '@/constans/api'
 import Snackbar from '@/components/Snackbar';
-import getAmountPage from '@/utils/getAmountPage'
 
 class ProductAPI {
   static productsEndpoint = () => endpoint(API_METHOD_GET, PRODUCTS_ROUTER);
 
   static productIdEndpoint = (id) => endpoint(API_METHOD_GET, PRODUCT_ID_ROUTER(id));
 
-  getProducts = async (handlerLoader, handlerCards, page) => {
+  /** @type ProductStateInstantsType */
+  #productState;
+
+  /**
+   * @param { ProductStateInstantsType } productState 
+   */
+  constructor(productState) {
+    this.#productState = productState;
+  }
+
+
+  /**
+   * @param { Number } page
+   * @returns {Promise<void>}
+   */
+  getProducts = async (page) => {
     const { endpoint, url, method } = ProductAPI.productsEndpoint();
-    let data;
+    const { 
+      state,
+      toggleLoaderProduct,
+      updateProduct,
+      updatePagination,
+      setInitProduct
+    } = this.#productState
+
+    toggleLoaderProduct(true);
 
     try {
-      handlerLoader(true);
+      const response = await fetch(`${API_HOST}${url}?_page=${page}`, { method });
 
-      const response = await fetch(`${API_HOST}${url}?_page=${page}&_limit=3`, { method });
-
-      const amountPage = getAmountPage(response);
-
-      data = await response.json();
-
-      if(data && data?.length){
-        handlerCards(data);
-      }
+      /** @type ProductsResponse */
+      const { data, items } = await response.json();
+      updateProduct(data)
+      updatePagination(page, items)
     } catch (error) {
     
       console.log('getProducts => error', error);
 
     } finally {
+      if (!state.isInitProduct) {
+        setInitProduct();
+      }
 
-      handlerLoader(false);
+      toggleLoaderProduct(false);
 
       console.log('getProducts => finally', endpoint);
     }

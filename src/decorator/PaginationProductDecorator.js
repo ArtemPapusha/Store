@@ -5,7 +5,11 @@ import ProductState from "@/states/ProductState";
  * @extends Pagination
  */
 class PaginationProductDecorator extends Pagination { 
-  eventTypes = [ProductState.EVENT_TYPE_UPDATE_PAGINATION];
+  eventTypes = [
+    ProductState.EVENT_TYPE_UPDATE_PAGINATION,
+    ProductState.EVENT_TYPE_PRODUCT_LOADING,
+    ProductState.EVENT_TYPE_UPDATE_INIT,
+  ];
   displayName = 'PaginationProductDecorator';
 
   /**
@@ -14,11 +18,28 @@ class PaginationProductDecorator extends Pagination {
   * @param { String } eventType
   * */
   handleEvent = (newState, prevState, eventType) => {
+    if (!newState.isInitProduct && newState.isLoadingProduct && !prevState.isLoadingProduct) {
+      this.buildPaginationSkeleton();
+    }
+    
+    if (!newState.isLoadingProduct) {
+      this.removePaginationSkeleton();
+    }
+
     if (
-      prevState.pagination.active !== newState.pagination.active
-      && eventType === ProductState.EVENT_TYPE_UPDATE_PAGINATION
-      ) {
-      this.handleChangeActivePage(newState.pagination.active);
+      eventType === ProductState.EVENT_TYPE_UPDATE_PAGINATION &&
+      newState.isInitProduct ||
+      eventType === ProductState.EVENT_TYPE_UPDATE_INIT
+    ) {
+      const activePage = prevState.pagination.active !== newState.pagination.active 
+        ? newState.pagination.active 
+        : prevState.pagination.active;
+
+      const elementsAmount = prevState.pagination.elementsAmount !== newState.pagination.elementsAmount 
+        ? newState.pagination.elementsAmount 
+        : prevState.pagination.elementsAmount;
+      this.handleChangeActivePage(activePage, elementsAmount);
+  
     }
   }
 

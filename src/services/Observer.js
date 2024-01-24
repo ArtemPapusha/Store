@@ -1,7 +1,7 @@
 /**
 * @typedef {{
 *   handleEvent: (newState: Object, prevState: Object, eventType: String) => void,
-*   eventTypes: [String]
+*   eventTypes: String[]
 * }} Observer
 */
 

@@ -6,6 +6,9 @@
   "repository": "https://github.com/fatush55/webpack-template",
   "author": "fatush55",
   "license": "MIT",
+  "engines": {
+    "node": "18.17.1"
+  },
   "scripts": {
     "dev": "webpack serve --config ./webpack/dev.config.js",
     "build": "webpack --config ./webpack/prod.config.js",
@@ -16,6 +19,7 @@
     "file-loader": "^6.2.0",
     "fs": "^0.0.1-security",
     "html-webpack-plugin": "^5.5.3",
+    "json-server": "^1.0.0-alpha.21",
     "mini-css-extract-plugin": "^2.7.6",
     "path": "^0.12.7",
     "postcss-loader": "^7.3.3",

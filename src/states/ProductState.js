@@ -10,13 +10,16 @@ class ProductState extends Observer {
   static EVENT_TYPE_UPDATE_PRODUCT = 'EVENT_TYPE_UPDATE_PRODUCT';
   /** @type String */
   static EVENT_TYPE_UPDATE_PAGINATION = 'EVENT_TYPE_UPDATE_PAGINATION';
+   /** @type String */
+   static EVENT_TYPE_UPDATE_INIT = 'EVENT_TYPE_UPDATE_INIT';
   /** @type ProductStateType */
   static INIT_STATE = {
     product: [],
     isLoadingProduct: false,
+    isInitProduct: false,
     pagination: {
       active: 1,
-      amount: 5,
+      elementsAmount: 10,
     },
   }
 
@@ -46,29 +49,36 @@ class ProductState extends Observer {
   * @param { Product[] } products
   * @returns this
   * */
-  updateProduct = (products) => {
+  updateProduct = async (products) => {
     this.#state.product = products;
+    console.log('products =>', products);
     this.notificationObservers(ProductState.EVENT_TYPE_UPDATE_PRODUCT);
     return this;
   }
 
   /**
   * @param { Number | Null ? } active
-  * @param { Number | Null ? } amount
+  * @param { Number | Null ? } elementsAmount
   * @returns this
   * */
-  updatePagination = (active = null, amount = null) => {
+  updatePagination = (active = null, elementsAmount = null) => {
     this.#state.pagination = {
       active: active ?? this.state.pagination.active,
-      amount: amount ?? this.state.pagination.amount,
+      elementsAmount: elementsAmount ?? this.state.pagination.elementsAmount,
     };
+    console.log('updatePagination => active =>', active);
+    console.log('updatePagination => elementsAmount =>', elementsAmount);
     this.notificationObservers(ProductState.EVENT_TYPE_UPDATE_PAGINATION);
     return this;
   }
 
+  setInitProduct = () => {
+    if (!this.#state.isInitProduct) {
+      this.#state.isInitProduct = true;
+      this.notificationObservers(ProductState.EVENT_TYPE_UPDATE_INIT)
+    }
+  }
 }
 
 export default ProductState;
-
-const prdState = new ProductState();
 

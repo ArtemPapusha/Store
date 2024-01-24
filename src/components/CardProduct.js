@@ -1,5 +1,7 @@
 import Button from '@/components/Button';
 import Typography from '@/components/Typography';
+import Skeleton from '@/components/Skeleton';
+import ListCards from '@/components/ListCards';
 
 class CardProduct {
   #name;
@@ -89,6 +91,20 @@ class CardProduct {
 
   get $cardWrapper() {
     return this.#$cardWrapper;
+  }
+
+  buildSkeletonProduct = () => {
+    new Skeleton().buildSkeletonProduct();
+  }
+
+  removeSkeletonProduct = () => {
+    const $skeletonProducts = document.querySelectorAll('.card_wrapper_skeleton')
+
+    if ($skeletonProducts.length > 0) {
+      $skeletonProducts.forEach(($skeletonItem) => {
+        $skeletonItem.remove();
+      });
+    }
   }
 
   buildCardWrapper = () => {
